@@ -3,10 +3,10 @@
 {% block title %}Kindy - prva stran{% endblock %}
 
 {% block content %}
-    <h1>Kindy - management system za vrtce</h1>
+    <h1>Kindy - run your preschool effectively</h1>
     {% if user.is_authenticated %}
-        <p>Uporabnik je logiran. Ime uporabnika: {{ user }}.</p>
+        <p>You are logged in. Your username is: {{ user }}.</p>
     {% else %}
-        <p>Uporabnik NI logiran! <a href="accounts/login">Logiraj se!</a></p>
+        <p>Welcome to Kindy. Please <a href="accounts/login">log in!</a></p>
     {% endif %}
 {% endblock %}

@@ -11,14 +11,25 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db244bsgiihsug',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '/home/matej/PycharmProjects/kindy3/database.db',  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'dswwgqgcymbbko',
-        'PASSWORD': 'mBtjaZkva2kz993ZiQFaPB8NH8',
-        'HOST': 'ec2-107-21-112-215.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '5432',                      # Set to empty string for default.
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',  # Set to empty string for default.
     }
+
+    # TODO: UPLOAD NA HEROKU!!!
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+    #     'NAME': 'db244bsgiihsug',                      # Or path to database file if using sqlite3.
+    #     # The following settings are not used with sqlite3:
+    #     'USER': 'dswwgqgcymbbko',
+    #     'PASSWORD': 'mBtjaZkva2kz993ZiQFaPB8NH8',
+    #     'HOST': 'ec2-107-21-112-215.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+    #     'PORT': '5432',                      # Set to empty string for default.
+    # }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -157,22 +168,23 @@ LOGGING = {
     }
 }
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
-
-# Static asset configuration
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# TODO: UPLOAD NA HEROKU!!!
+# # Parse database configuration from $DATABASE_URL
+# import dj_database_url
+# DATABASES['default'] =  dj_database_url.config()
+#
+# # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#
+# # Allow all host headers
+# ALLOWED_HOSTS = ['*']
+#
+# # Static asset configuration
+# import os
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = 'staticfiles'
+# STATIC_URL = '/static/'
+#
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
