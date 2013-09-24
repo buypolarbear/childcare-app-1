@@ -17,4 +17,5 @@ urlpatterns = patterns('',
 
     # registration
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^childcare/', include('childcare.urls', namespace="childcare")),
 )

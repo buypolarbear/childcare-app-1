@@ -1,0 +1,12 @@
+{% extends 'kindy3/base.html' %}
+
+{% block title %}Create a childcare site{% endblock title %}
+
+{% block content %}
+    <h1>Create a childcare site</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create">
+    </form>
+{% endblock content %}

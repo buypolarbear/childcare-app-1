@@ -1,12 +1,15 @@
 {% extends 'kindy3/base.html' %}
 
-{% block title %}Kindy - prva stran{% endblock %}
+{% block title %}Kindy preschool management system{% endblock %}
 
 {% block content %}
-    <h1>Kindy - run your preschool effectively</h1>
+    <h1>Kindy</h1>
+        <h2>run your preschool effectively</h2>
     {% if user.is_authenticated %}
         <p>You are logged in. Your username is: {{ user }}.</p>
+        <p><a href="/childcare/create">Create a childcare site</a></p>
     {% else %}
         <p>Welcome to Kindy. Please <a href="accounts/login">log in!</a></p>
     {% endif %}
+    <p><a href="/childcare/11">Vrtec JANA</a></p>
 {% endblock %}

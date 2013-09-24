@@ -1,0 +1,11 @@
+{% extends 'kindy3/base.html' %}
+{% load guardian_tags %}
+
+
+{% block title %}Vrtec {{ childcare.name }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ childcare.name }}</h1>
+    <p>Manager: {{ childcare.manager }}</p>
+    <p>you: {{ user }}</p>
+{% endblock content %}
