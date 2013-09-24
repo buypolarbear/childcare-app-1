@@ -49,7 +49,7 @@ class Childcare(models.Model):
 class GroupChildcare(models.Model):
     childcare = models.ForeignKey(Childcare)
     group = models.ForeignKey(Group)
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
@@ -57,3 +57,20 @@ class GroupChildcare(models.Model):
 
     class Meta:
         unique_together = ['childcare', 'group']
+
+
+class ChildcareNews(models.Model):
+    title = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User)
+    content = models.TextField()
+    childcare = models.ForeignKey(Childcare)
+    #images
+    #documents/files
+
+    def __unicode__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return '/'

@@ -2,20 +2,31 @@
 <html>
 
 <head>
+    <style>
+      input.required, error {
+        border: 2px solid red;
+      }
+    </style>
     <title>{% block title %}Tagging Exploration{% endblock %}</title>
 </head>
+
 <body>
     <div>
-        <a href="/">home</a> |
+        <a href="/">main</a> |
         <!--<a href="/accounts/register">register</a> |-->
         <a href="/accounts/login">login</a> |
         <a href="/accounts/logout">logout</a> |
-        <a href="/admin">admin</a>
+        <a href="/admin">administration</a> |
+        profile: <a href="/home">{{ user }}</a>
     </div>
 
-    <div>
-        {% block content %}
-        {% endblock %}
+    <div id="sidebar">
+        {% block sidebar %}{% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+        {% block main_content %}{% endblock %}
     </div>
 </body>
 </html>

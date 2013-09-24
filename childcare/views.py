@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import CreateView
 from guardian.decorators import permission_required_or_403
-from childcare.forms import ChildcareCreateForm
-from childcare.models import Childcare
+from .forms import ChildcareCreateForm, ChildcareNewsCreateForm
+from .models import Childcare, ChildcareNews
 
 
 class ChildcareCreate(CreateView):
@@ -29,4 +30,24 @@ class ChildcareCreate(CreateView):
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'pk'))
 def childcare(request, pk):
     childcare = get_object_or_404(Childcare, pk=pk)
-    return render(request, 'childcare/childcare_detail.html', {'childcare': childcare})
+    childcare_news = ChildcareNews.objects.filter(childcare=childcare)
+    return render(request, 'childcare/childcare_detail.html', {'childcare': childcare, 'news_list': childcare_news})
+
+
+@login_required
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'pk'))
+def create_childcare_news(request, pk):
+    if request.method == 'POST':
+        childcare = get_object_or_404(Childcare, pk=pk)
+        form = ChildcareNewsCreateForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.childcare = childcare
+            obj.save
+            #self.object = obj
+            form.save(commit=True)
+            return HttpResponseRedirect('/childcare/%s' % pk)
+    else:
+        form = ChildcareNewsCreateForm()
+    return render(request, 'childcare/childcare_news_create.html', {'form': form})

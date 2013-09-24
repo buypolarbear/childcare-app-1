@@ -8,8 +8,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^kindy3/', include('kindy3.foo.urls')),
 
-    # home
-    url(r'^$', 'kindy3.views.home', name='home'),
+    url(r'^$', 'kindy3.views.main', name='main'),
+    url(r'^home/$', 'kindy3.views.home', name='home'),
 
     # admin
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

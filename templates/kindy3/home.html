@@ -1,0 +1,14 @@
+{% extends 'kindy3/base.html' %}
+
+{% block title %}Kindy Home{% endblock %}
+
+{% block content %}
+    <h1>Hello {{ user }}!</h1>
+    <p>Your childcare sites:</p>
+    <ul>
+    {% for childcare in childcares %}
+        <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    {% endfor %}
+    </ul>
+    <p><a href="/childcare/create">Create a childcare site</a></p>
+{% endblock %}

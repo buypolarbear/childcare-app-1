@@ -1,12 +1,20 @@
 from django import forms
-from childcare.models import Childcare
+from .models import Childcare, ChildcareNews
 
 
 class ChildcareCreateForm(forms.ModelForm):
     class Meta:
         model = Childcare
         fields = ('name',
-                  'slug',
+                  #'slug',
                   'street_address',
                   'city',
                   'country',)
+        exclude = ('slug',)
+
+
+class ChildcareNewsCreateForm(forms.ModelForm):
+    class Meta:
+        model = ChildcareNews
+        fields = ('title',
+                  'content',)
