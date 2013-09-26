@@ -9,10 +9,13 @@
     <p>Manager: {{ childcare.manager }}</p>
     <p>Address: {{ childcare.street_address }}, {{ childcare.city }}, {{ childcare.country }}</p>
     <p><a href="news/create">Add news</a></p>
-    <p>Childcare news:</p>
-    <ul>
-    {% for news in news_list %}
-        <li><a href="">{{ news }}</a></li>
-    {% endfor %}
-    </ul>
+
+    {% if news_list %}
+        <p>Childcare news:</p>
+        <ul>
+        {% for news in news_list %}
+            <li><a href="">{{ news }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock content %}

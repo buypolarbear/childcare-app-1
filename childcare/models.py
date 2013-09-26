@@ -8,7 +8,7 @@ from utils.slugify import unique_slugify
 
 class Childcare(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True, max_length=100)
+    slug = models.SlugField(verbose_name='URL, kindy.at/', unique=True, max_length=100)
     slogan = models.CharField(max_length=100)
     description = models.TextField()
     street_address = models.CharField(max_length=100)

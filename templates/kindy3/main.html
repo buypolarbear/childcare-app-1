@@ -6,12 +6,8 @@
     <h1>Kindy</h1>
         <h2>run your preschool effectively</h2>
     {% if user.is_authenticated %}
-        <p>You are logged in. Your username is: {{ user }}.</p>
-        <p><a href="/childcare/create">Create a childcare site</a></p>
+        <p>You are logged in. Your username is: <a href="/home">{{ user }}</a>.</p>
     {% else %}
         <p>Welcome to Kindy. Please <a href="accounts/login">log in!</a></p>
     {% endif %}
-    <p><a href="/childcare/12">Matejev vrtec</a></p>
-
-    <p><a href="/home">Profil</a></p>
 {% endblock %}

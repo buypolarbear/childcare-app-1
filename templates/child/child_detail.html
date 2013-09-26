@@ -1,0 +1,15 @@
+{% extends 'kindy3/base.html' %}
+{% load guardian_tags %}
+
+
+{% block title %}{{ child }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ child }}</h1>
+    <p>Guardians:</p>
+    <ul>
+    {% for guardian in child.guardians.all %}
+        <li><a>{{ guardian }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

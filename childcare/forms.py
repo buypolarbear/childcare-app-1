@@ -6,11 +6,11 @@ class ChildcareCreateForm(forms.ModelForm):
     class Meta:
         model = Childcare
         fields = ('name',
-                  #'slug',
+                  'slug',
                   'street_address',
                   'city',
                   'country',)
-        exclude = ('slug',)
+        #exclude = ('slug',)
 
 
 class ChildcareNewsCreateForm(forms.ModelForm):
