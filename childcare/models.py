@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
-from django.core.urlresolvers import reverse
 from django.db import models
+from child.models import Child
 from childcare import countries
 from utils.roles import roles_childcare_init_new
 from utils.slugify import unique_slugify
@@ -27,6 +27,7 @@ class Childcare(models.Model):
         permissions = (
             ('childcare_view', 'View childcare dashboard'),
             ('childcare_update', 'Update childcare settings'),
+            ('classroom_view', 'View classroom dashboard'),
         )
 
     def save(self, *args, **kwargs):
@@ -74,3 +75,24 @@ class ChildcareNews(models.Model):
 
     def get_absolute_url(self):
         return '/childcare/%s/news/%s' % (self.childcare.pk, self.pk)
+
+
+class Classroom(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=255)
+    childcare = models.ForeignKey(Childcare)
+    teachers = models.ManyToManyField(User)
+
+    def __unicode__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return 'childcare/%s/classroom/%s' % (self.childcare.pk, self.pk)
+
+
+class ClassroomChildren(models.Model):
+    child = models.ForeignKey(Child)
+    classroom = models.ForeignKey(Classroom)
+    approved = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)

@@ -1,8 +1,8 @@
-from django import forms
-from .models import Childcare, ChildcareNews
+from django.forms import ModelForm
+from .models import Childcare, ChildcareNews, Classroom
 
 
-class ChildcareCreateForm(forms.ModelForm):
+class ChildcareCreateForm(ModelForm):
     class Meta:
         model = Childcare
         fields = ('name',
@@ -13,8 +13,17 @@ class ChildcareCreateForm(forms.ModelForm):
         #exclude = ('slug',)
 
 
-class ChildcareNewsCreateForm(forms.ModelForm):
+class ChildcareNewsCreateForm(ModelForm):
     class Meta:
         model = ChildcareNews
         fields = ('title',
                   'content',)
+
+
+class ClassroomCreateForm(ModelForm):
+    class Meta:
+        model = Classroom
+        fields = (
+            'name',
+            'description',
+        )

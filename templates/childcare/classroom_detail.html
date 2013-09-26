@@ -1,0 +1,9 @@
+{% extends 'kindy3/base.html' %}
+{% load guardian_tags %}
+
+{% block title %}{{ classroom }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ classroom }}</h1>
+    <p>{{ classroom.description }}</p>
+{% endblock content %}

@@ -1,20 +1,29 @@
 {% extends 'kindy3/base.html' %}
 {% load guardian_tags %}
 
-
-{% block title %}Vrtec {{ childcare.name }}{% endblock title %}
+{% block title %}{{ childcare.name }}{% endblock title %}
 
 {% block content %}
     <h1>{{ childcare.name }}</h1>
     <p>Manager: {{ childcare.manager }}</p>
     <p>Address: {{ childcare.street_address }}, {{ childcare.city }}, {{ childcare.country }}</p>
     <p><a href="news/create">Add news</a></p>
+    <p><a href="classroom/create">Add a classroom</a></p>
 
     {% if news_list %}
         <p>Childcare news:</p>
         <ul>
         {% for news in news_list %}
             <li><a href="news/{{ news.pk }}">{{ news }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if classroom_list %}
+        <p>Classrooms:</p>
+        <ul>
+        {% for classroom in classroom_list %}
+            <li><a href="classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
         {% endfor %}
         </ul>
     {% endif %}
