@@ -8,15 +8,15 @@ from utils.roles import roles_child_init_new
 class Child(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='child/images/')
+    image = models.ImageField(upload_to='child/images/', blank=True)
     thumbnail = ImageSpecField(source='image',
                                processors=[ResizeToFill(100, 100)],
                                format='JPEG',
                                options={'quality': 60})
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1)
-    information = models.TextField()
-    teacher_notes = models.TextField()
+    information = models.TextField(blank=True)
+    teacher_notes = models.TextField(blank=True)
     guardians = models.ManyToManyField(User)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

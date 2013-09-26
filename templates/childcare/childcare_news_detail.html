@@ -1,0 +1,9 @@
+{% extends 'kindy3/base.html' %}
+{% load guardian_tags %}
+
+{% block title %}{{ news }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ news }}</h1>
+    <p>{{ news.content }}</p>
+{% endblock content %}

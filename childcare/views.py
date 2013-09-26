@@ -35,7 +35,7 @@ def childcare(request, pk):
 
 @login_required
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'pk'))
-def create_childcare_news(request, pk):
+def childcare_news_create(request, pk):
     if request.method == 'POST':
         childcare = get_object_or_404(Childcare, pk=pk)
         form = ChildcareNewsCreateForm(request.POST)
@@ -50,3 +50,10 @@ def create_childcare_news(request, pk):
     else:
         form = ChildcareNewsCreateForm()
     return render(request, 'childcare/childcare_news_create.html', {'form': form})
+
+
+@login_required
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def childcare_news_detail(request, childcare_id, news_id):
+    news = get_object_or_404(ChildcareNews, pk=news_id, childcare=childcare_id)
+    return render(request, 'childcare/childcare_news_detail.html', {'news': news})

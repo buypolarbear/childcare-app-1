@@ -9,14 +9,14 @@ from utils.slugify import unique_slugify
 class Childcare(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(verbose_name='URL, kindy.at/', unique=True, max_length=100)
-    slogan = models.CharField(max_length=100)
-    description = models.TextField()
+    slogan = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
     street_address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     country = countries.CountryField()
     manager = models.ForeignKey(User, related_name='childcare_manager')
-    employees = models.ManyToManyField(User, related_name='childcare_employees')
-    theme = models.CharField(max_length=100)
+    employees = models.ManyToManyField(User, related_name='childcare_employees', blank=True)
+    theme = models.CharField(max_length=100, blank=True)
     #subscription
     #subscription_expires
 
@@ -73,4 +73,4 @@ class ChildcareNews(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return '/'
+        return '/childcare/%s/news/%s' % (self.childcare.pk, self.pk)
