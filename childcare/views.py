@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import CreateView
 from guardian.decorators import permission_required_or_403
+from guardian.shortcuts import assign_perm
 from .forms import ChildcareCreateForm, ChildcareNewsCreateForm, ClassroomCreateForm
 from .models import Childcare, ChildcareNews, Classroom
 
@@ -70,8 +71,11 @@ def classroom_create(request, childcare_id):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.childcare = childcare
-            obj.save
+            teachers = form.cleaned_data['teachers']
+            obj.save()
             form.save(commit=True)
+            for teacher in teachers:
+                assign_perm('classroom_view', teacher, childcare)
             return HttpResponseRedirect('/childcare/%s' % childcare_id)
     else:
         form = ClassroomCreateForm()
