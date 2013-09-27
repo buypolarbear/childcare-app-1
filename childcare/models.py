@@ -75,24 +75,3 @@ class ChildcareNews(models.Model):
 
     def get_absolute_url(self):
         return '/childcare/%s/news/%s' % (self.childcare.pk, self.pk)
-
-
-class Classroom(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=255)
-    childcare = models.ForeignKey(Childcare)
-    teachers = models.ManyToManyField(User)
-
-    def __unicode__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return 'childcare/%s/classroom/%s' % (self.childcare.pk, self.pk)
-
-
-class ClassroomChildren(models.Model):
-    child = models.ForeignKey(Child)
-    classroom = models.ForeignKey(Classroom)
-    approved = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)

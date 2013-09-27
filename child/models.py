@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from django.core.urlresolvers import reverse
 from django.db import models
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFill
@@ -41,7 +42,7 @@ class Child(models.Model):
             roles_child_init_new(self)
 
     def get_absolute_url(self):
-        return '/children/%s' % self.id
+        return reverse('child.views.child', args=[self.pk])
 
 
 class GroupChild(models.Model):

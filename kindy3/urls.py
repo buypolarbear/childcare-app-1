@@ -22,6 +22,12 @@ urlpatterns = patterns('',
     # registration
     url(r'^accounts/', include('registration.backends.default.urls')),
 
+    #childcare
     url(r'^childcare/', include('childcare.urls', namespace="childcare")),
+
+    #child
     url(r'^children/', include('child.urls', namespace="child")),
+
+    #website
+    url(r'^(?P<childcare_slug>[\w\-]+)/', include('website.urls', namespace="website")),
 )

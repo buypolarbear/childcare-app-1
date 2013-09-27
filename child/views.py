@@ -18,7 +18,7 @@ class ChildCreate(CreateView):
         for user in guardians:
             assign_perm('child_view', user, obj)
             assign_perm('child_update_guardian', user, obj)
-        return HttpResponseRedirect(self.get_success_url())
+        return HttpResponseRedirect('/children/%s' % obj.pk)
 
 
 @login_required
