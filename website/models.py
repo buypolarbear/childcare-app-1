@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+#from django.core.urlresolvers import reverse
 from django.db import models
+from child.models import Child
 from childcare.models import Childcare
+from classroom.models import Classroom
 
 
 class WebsiteNews(models.Model):
@@ -23,3 +25,12 @@ class WebsiteNews(models.Model):
 
     #def get_absolute_url(self):
     #    return reverse('website.views.news_detail', args=[self.slug])
+
+
+class EnrolledChildren(models.Model):
+    child = models.ForeignKey(Child)
+    childcare = models.ForeignKey(Childcare)
+    classroom = models.ForeignKey(Classroom, null=True)
+    approved = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)

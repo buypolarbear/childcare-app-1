@@ -25,11 +25,11 @@ def classroom_create(request, childcare_id):
             return HttpResponseRedirect('/childcare/%s' % childcare_id)
     else:
         form = ClassroomCreateForm()
-    return render(request, 'childcare/classroom_create.html', {'form': form})
+    return render(request, 'classroom/classroom_create.html', {'form': form})
 
 
 @login_required
 @permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
 def classroom(request, childcare_id, classroom_id):
     classroom = get_object_or_404(Classroom, pk=classroom_id)
-    return render(request, 'childcare/classroom_detail.html', {'classroom': classroom})
+    return render(request, 'classroom/classroom_detail.html', {'classroom': classroom})

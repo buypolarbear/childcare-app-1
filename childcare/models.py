@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User, Group
 from django.db import models
-from child.models import Child
 from childcare import countries
 from utils.roles import roles_childcare_init_new
 from utils.slugify import unique_slugify
@@ -26,7 +25,7 @@ class Childcare(models.Model):
     class Meta:
         permissions = (
             ('childcare_view', 'View childcare dashboard'),
-            ('childcare_update', 'Update childcare settings'),
+            ('childcare_update', 'Updating childcare settings'),
             ('classroom_view', 'View classroom dashboard'),
         )
 

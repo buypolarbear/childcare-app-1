@@ -1,0 +1,17 @@
+{% extends 'kindy3/base.html' %}
+{% load guardian_tags %}
+
+{% block title %}{{ childcare.name }} waiting list{% endblock title %}
+
+{% block content %}
+    <h1>Waiting list for {{ childcare.name }}</h1>
+    {% if enrollment_list %}
+        <ul>
+        {% for object in enrollment_list %}
+            <li><a href="">{{ object.child }}: {{ object.child.pk }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No children on the waiting list.</p>
+    {% endif %}
+{% endblock content %}

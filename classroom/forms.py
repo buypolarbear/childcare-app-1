@@ -16,5 +16,5 @@ class ClassroomCreateForm(ModelForm):
         fields = (
             'name',
             'description',
-            'teachers'
+            'teachers',
         )
