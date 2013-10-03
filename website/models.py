@@ -34,3 +34,6 @@ class EnrolledChildren(models.Model):
     approved = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ['child', 'childcare']

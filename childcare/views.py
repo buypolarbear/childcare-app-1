@@ -5,8 +5,9 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import CreateView
 from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import assign_perm
+from child.models import Child
 from classroom.models import Classroom
-from .forms import ChildcareCreateForm, ChildcareNewsCreateForm
+from .forms import ChildcareCreateForm, ChildcareNewsCreateForm, EnrollmentApplicationForm
 from .models import Childcare, ChildcareNews
 from website.models import EnrolledChildren
 
@@ -60,8 +61,9 @@ def childcare_news_create(request, childcare_id):
 @login_required
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def childcare_news_detail(request, childcare_id, news_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
     news = get_object_or_404(ChildcareNews, pk=news_id, childcare=childcare_id)
-    return render(request, 'childcare/childcare_news_detail.html', {'news': news})
+    return render(request, 'childcare/childcare_news_detail.html', {'childcare': childcare, 'news': news})
 
 
 @login_required
@@ -72,3 +74,21 @@ def children_enrollment_list(request, childcare_id):
     return render(request,
                   'childcare/childcare_enrollment_list.html',
                   {'childcare': childcare, 'enrollment_list': enrollment_list})
+
+
+@login_required
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def child_enrollment_application(request, childcare_id, child_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    child = get_object_or_404(Child, pk=child_id)
+    application = get_object_or_404(EnrolledChildren, child=child, childcare=childcare_id)
+    if request.method == 'POST':
+        form = EnrollmentApplicationForm(childcare, request.POST, instance=application)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/childcare/%s/waiting-list' % childcare_id)
+    else:
+        form = EnrollmentApplicationForm(childcare, instance=application)
+    return render(request,
+                  'childcare/child_enrollment_application.html',
+                  {'childcare': childcare, 'application': application, 'form': form})

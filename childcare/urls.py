@@ -5,7 +5,10 @@ urlpatterns = patterns('',
                        #childcare
                        url(r'^(?P<childcare_id>\d+)/$', views.childcare),
                        url(r'^create/$', views.ChildcareCreate.as_view()),
+
+                       #enrollment
                        url(r'^(?P<childcare_id>\d+)/waiting-list$', views.children_enrollment_list),
+                       url(r'^(?P<childcare_id>\d+)/waiting-list/(?P<child_id>\d+)$', views.child_enrollment_application),
 
                        #newsboard
                        url(r'^(?P<childcare_id>\d+)/news/create/$', views.childcare_news_create),

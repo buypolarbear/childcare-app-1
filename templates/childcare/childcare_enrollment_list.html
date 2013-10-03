@@ -1,5 +1,4 @@
-{% extends 'kindy3/base.html' %}
-{% load guardian_tags %}
+{% extends 'childcare/childcare_base.html' %}
 
 {% block title %}{{ childcare.name }} waiting list{% endblock title %}
 
@@ -8,7 +7,7 @@
     {% if enrollment_list %}
         <ul>
         {% for object in enrollment_list %}
-            <li><a href="">{{ object.child }}: {{ object.child.pk }}</a></li>
+            <li><a href="waiting-list/{{ object.child.pk }}">{{ object.child }}</a>, submitted: {{ object.created }}</li>
         {% endfor %}
         </ul>
     {% else %}

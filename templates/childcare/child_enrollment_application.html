@@ -1,0 +1,16 @@
+{% extends 'childcare/childcare_base.html' %}
+
+{% block title %}{{ application.child }} application{% endblock title %}
+
+{% block content %}
+    <h1>Enrollment application</h1>
+    <p>Name: {{ application.child }}</p>
+    <p>Date of birth: {{ application.child.date_of_birth }}</p>
+    <p>Gender: {{ application.child.gender }}</p>
+    <p>Form submitted: {{ application.created }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock content %}
