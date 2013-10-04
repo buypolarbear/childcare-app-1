@@ -7,7 +7,7 @@
     {% if enrollment_list %}
         <ul>
         {% for object in enrollment_list %}
-            <li><a href="waiting-list/{{ object.child.pk }}">{{ object.child }}</a>, submitted: {{ object.created }}</li>
+            <li><a href="/childcare/{{ childcare.pk }}/waiting-list/{{ object.child.pk }}">{{ object.child }}</a>, submitted: {{ object.created }}</li>
         {% endfor %}
         </ul>
     {% else %}

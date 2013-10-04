@@ -11,8 +11,8 @@ from classroom.models import Classroom
 @login_required
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def classroom_create(request, childcare_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
-        childcare = get_object_or_404(Childcare, pk=childcare_id)
         form = ClassroomCreateForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
@@ -25,7 +25,7 @@ def classroom_create(request, childcare_id):
             return HttpResponseRedirect('/childcare/%s' % childcare_id)
     else:
         form = ClassroomCreateForm()
-    return render(request, 'classroom/classroom_create.html', {'form': form})
+    return render(request, 'classroom/classroom_create.html', {'form': form, 'childcare': childcare})
 
 
 @login_required

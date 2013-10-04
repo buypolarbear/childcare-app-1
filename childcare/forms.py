@@ -1,7 +1,10 @@
-from django.forms import ModelForm, ModelChoiceField
+from django.forms import ModelForm, ModelChoiceField, ModelMultipleChoiceField
 from classroom.models import Classroom
 from .models import Childcare, ChildcareNews
 from website.models import EnrolledChildren
+from django.contrib.auth.models import User
+import autocomplete_light
+from utils import autocomplete_light_registry
 
 
 class ChildcareCreateForm(ModelForm):
@@ -23,7 +26,6 @@ class ChildcareNewsCreateForm(ModelForm):
 
 
 class EnrollmentApplicationForm(ModelForm):
-
     def __init__(self, childcare_id=None, *args, **kwargs):
         super(EnrollmentApplicationForm, self).__init__(*args, **kwargs)
         self._childcare_id = childcare_id
@@ -34,4 +36,19 @@ class EnrollmentApplicationForm(ModelForm):
         fields = (
             'classroom',
             'approved',
+        )
+
+
+class EmployeesAddForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(EmployeesAddForm, self).__init__(*args, **kwargs)
+        #self._childcare_id = childcare_id
+        self.fields['employees'] = ModelMultipleChoiceField(
+            queryset=User.objects.all(),
+            widget=autocomplete_light.MultipleChoiceWidget('UserAutocomplete'))
+
+    class Meta:
+        model = Childcare
+        fields = (
+            'employees',
         )

@@ -1,13 +1,13 @@
 {% extends 'childcare/childcare_base.html' %}
 
-{% block title %}Create a class{% endblock title %}
+{% block title %}Add employees{% endblock title %}
 
 {% block content %}
-    <h1>Add a class in your childcare</h1>
-    <form method="post" enctype="multipart/form-data">
+    <h1>Add {{ childcare }} employees</h1>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Create">
+        <input type="submit" value="Add">
     </form>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js" type="text/javascript"></script>

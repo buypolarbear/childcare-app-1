@@ -2,8 +2,8 @@
 {% load guardian_tags %}
 {% block sidebar %}
 <p><a href="/childcare/{{ childcare.pk }}">Childcare dashboard:</a>
-    <a href="/childcare/{{ childcare.pk }}/news/create">Add news</a> |
-    <a href="/childcare/{{ childcare.pk }}/classroom/create">Add a classroom</a> |
-    <a href="/childcare/{{ childcare.pk }}/waiting-list">Waiting list</a> |
+    <a href="/childcare/{{ childcare.pk }}/newsboard">Newsboard</a> |
+    <a href="/childcare/{{ childcare.pk }}/classrooms">Classes</a> |
+    <a href="/childcare/{{ childcare.pk }}/employees">Employees</a> |
     <a href="/{{ childcare.slug }}">Website</a></p>
 {% endblock %}

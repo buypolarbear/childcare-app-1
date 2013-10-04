@@ -1,0 +1,12 @@
+{% extends 'childcare/childcare_base.html' %}
+{% block title %}{{ childcare }} employees{% endblock title %}
+
+{% block content %}
+    <h1>{{ childcare }} employees</h1>
+    <p><a href="/childcare/{{ childcare.pk }}/employees/add">Add/Remove employees</a>
+    <ul>
+    {% for employee in childcare.employees.all %}
+        <li>{{ employee }}</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
