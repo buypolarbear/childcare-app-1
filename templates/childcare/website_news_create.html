@@ -1,0 +1,13 @@
+{% extends 'childcare/childcare_base.html' %}
+
+{% block title %}Add website news{% endblock title %}
+
+{% block content %}
+    <h1>Add website news</h1>
+    <h2>Publicly visible</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create">
+    </form>
+{% endblock content %}

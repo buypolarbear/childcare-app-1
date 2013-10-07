@@ -8,7 +8,8 @@ from website.models import WebsiteNews
 
 def website(request, childcare_slug):
     childcare = get_object_or_404(Childcare, slug=childcare_slug)
-    return render(request, 'website/childcare_website.html', {'childcare': childcare})
+    website_news_list = WebsiteNews.objects.filter(childcare=childcare)
+    return render(request, 'website/website_home.html', {'childcare': childcare, 'news_list': website_news_list})
 
 
 def news_detail(request, childcare_slug, news_slug):
@@ -31,7 +32,7 @@ def enroll_child(request, childcare_slug):
             return HttpResponseRedirect('/%s/enrollment-sent' % childcare_slug)
     else:
         form = EnrollChildForm(request.user)
-    return render(request, 'website/enroll_child.html', {'form': form})
+    return render(request, 'website/enroll_child.html', {'form': form, 'childcare': childcare})
 
 
 def enroll_child_confirmation(request, childcare_slug):

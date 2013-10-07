@@ -7,7 +7,7 @@ from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import assign_perm
 from child.models import Child
 from classroom.models import Classroom
-from .forms import ChildcareCreateForm, ChildcareNewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm
+from .forms import ChildcareCreateForm, ChildcareNewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsiteNewsCreateForm
 from .models import Childcare, ChildcareNews
 from website.models import EnrolledChildren
 
@@ -130,3 +130,28 @@ def employees_add(request, childcare_id):
 def employees_page(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     return render(request, 'childcare/employees_page.html', {'childcare': childcare})
+
+
+@login_required()
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def website_page(request, childcare_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    return render(request, 'childcare/website_page.html', {'childcare': childcare})
+
+
+@login_required()
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def website_news_create(request, childcare_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    if request.method == 'POST':
+        form = WebsiteNewsCreateForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.childcare = childcare
+            obj.save
+            form.save(commit=True)
+            return HttpResponseRedirect('/childcare/%s' % childcare_id)
+    else:
+        form = WebsiteNewsCreateForm()
+    return render(request, 'childcare/website_news_create.html', {'childcare': childcare, 'form': form})

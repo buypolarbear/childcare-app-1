@@ -22,4 +22,8 @@ urlpatterns = patterns('',
                        #enrollment
                        url(r'^(?P<childcare_id>\d+)/waiting-list/$', views.children_enrollment_list),
                        url(r'^(?P<childcare_id>\d+)/waiting-list/(?P<child_id>\d+)/$', views.child_enrollment_application),
+
+                       #website page
+                       url(r'^(?P<childcare_id>\d+)/website/$', views.website_page),
+                       url(r'^(?P<childcare_id>\d+)/website/news/create/$', views.website_news_create),
                        )

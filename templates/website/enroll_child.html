@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Enroll your child</title>
-</head>
-<body>
+{% extends 'website/website_base.html' %}
+
+{% block title %}Enroll your child{% endblock title %}
+
+{% block content %}
     <h1>Enroll your child</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Enroll">
     </form>
-</body>
-</html>
+{% endblock content %}

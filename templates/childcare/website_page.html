@@ -1,0 +1,10 @@
+{% extends 'childcare/childcare_base.html' %}
+
+{% block title %}Edit website{% endblock title %}
+
+{% block content %}
+    <h1>Website</h1>
+    <p><a href="/{{ childcare.slug }}">Go to website</a> | <a href="/childcare/{{ childcare.pk }}/website/news/create">Add website news</a></p>
+
+
+{% endblock content %}

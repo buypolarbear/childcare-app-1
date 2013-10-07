@@ -1,7 +1,7 @@
 from django.forms import ModelForm, ModelChoiceField, ModelMultipleChoiceField
 from classroom.models import Classroom
 from .models import Childcare, ChildcareNews
-from website.models import EnrolledChildren
+from website.models import EnrolledChildren, WebsiteNews
 from django.contrib.auth.models import User
 import autocomplete_light
 from utils import autocomplete_light_registry
@@ -52,3 +52,10 @@ class EmployeesAddForm(ModelForm):
         fields = (
             'employees',
         )
+
+
+class WebsiteNewsCreateForm(ModelForm):
+    class Meta:
+        model = WebsiteNews
+        fields = ('title',
+                  'content',)

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      input.required, error {
+        border: 2px solid red;
+      }
+    </style>
+    <title>{% block title %}Tagging Exploration{% endblock %}</title>
+</head>
+<body>
+<h1><a href="/{{ childcare.slug }}">{{ childcare }}</a></h1>
+    <div id="sidebar">
+        {% block sidebar %}
+            <p><a href="/{{ childcare.slug }}/enroll">Enroll your child</a></p>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+        {% block main_content %}{% endblock %}
+    </div>
+
+</body>
+</html>

@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 #from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.template.defaultfilters import slugify
 from child.models import Child
 from childcare.models import Childcare
 from classroom.models import Classroom
@@ -23,8 +25,13 @@ class WebsiteNews(models.Model):
     class Meta:
         ordering = ['-created']
 
-    #def get_absolute_url(self):
-    #    return reverse('website.views.news_detail', args=[self.slug])
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+            super(WebsiteNews, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('website.views.news_detail', args=[self.slug])
 
 
 class EnrolledChildren(models.Model):

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ news }}</title>
-</head>
-<body>
+{% extends 'website/website_base.html' %}
+
+{% block title %}{{ childcare }}{% endblock title %}
+
+{% block content %}
     <h1>{{ news }}</h1>
-</body>
-</html>
+    <p>{{ news.content }}</p>
+{% endblock content %}
