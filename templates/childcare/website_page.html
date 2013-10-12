@@ -6,5 +6,11 @@
     <h1>Website</h1>
     <p><a href="/{{ childcare.slug }}">Go to website</a> | <a href="/childcare/{{ childcare.pk }}/website/news/create">Add website news</a></p>
 
+    <p>News:</p>
+    <ul>
+    {% for news in website_news_list %}
+        <li><a href="/{{ childcare.slug }}/news/{{ news.slug }}">{{ news }}</a></li>
+    {% endfor %}
+    </ul>
 
 {% endblock content %}

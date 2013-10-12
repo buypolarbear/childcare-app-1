@@ -4,7 +4,8 @@ from childcare import views
 urlpatterns = patterns('',
                        #childcare
                        url(r'^(?P<childcare_id>\d+)/$', views.childcare),
-                       url(r'^create/$', views.ChildcareCreate.as_view()),
+                       url(r'^create/$', views.childcare_create),
+                       #url(r'^create/$', views.ChildcareCreate.as_view()),
 
                        #employees
                        url(r'^(?P<childcare_id>\d+)/employees/$', views.employees_page),

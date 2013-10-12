@@ -1,0 +1,11 @@
+{% extends 'classroom/classroom_base.html' %}
+{% block title %}{{ classroom }} | children{% endblock title %}
+
+{% block content %}
+    <h1>{{ classroom }}: children</h1>
+    <ul>
+    {% for object in enrolledchildren_list %}
+        <li>{{ object.child }}</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

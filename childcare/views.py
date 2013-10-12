@@ -2,31 +2,32 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import CreateView
 from guardian.decorators import permission_required_or_403
-from guardian.shortcuts import assign_perm
 from child.models import Child
 from classroom.models import Classroom
 from .forms import ChildcareCreateForm, ChildcareNewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsiteNewsCreateForm
 from .models import Childcare, ChildcareNews
-from website.models import EnrolledChildren
+from website.models import EnrolledChildren, WebsiteNews
 
 
-class ChildcareCreate(CreateView):
-    form_class = ChildcareCreateForm
-    template_name = 'childcare/childcare_create.html'
-
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.manager = self.request.user
-        obj.save
-        self.object = obj
-        form.save(commit=True)
-        childcare = self.object
-        manager = self.request.user
-        group = Group.objects.get(name='%s: Manager' % childcare.slug)
-        manager.groups.add(group)
-        return HttpResponseRedirect(self.get_success_url())
+@login_required
+def childcare_create(request):
+    if request.method == 'POST':
+        form = ChildcareCreateForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.manager = request.user
+            obj.save
+            object = obj
+            form.save(commit=True)
+            childcare = object
+            manager = request.user
+            group = Group.objects.get(name='%s: Manager' % childcare.slug)
+            manager.groups.add(group)
+            return HttpResponseRedirect('/home')
+    else:
+        form = ChildcareCreateForm()
+    return render(request, 'childcare/childcare_create.html', {'form': form})
 
 
 @login_required
@@ -136,7 +137,9 @@ def employees_page(request, childcare_id):
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def website_page(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    return render(request, 'childcare/website_page.html', {'childcare': childcare})
+    website_news_list = WebsiteNews.objects.filter(childcare=childcare)
+    return render(request, 'childcare/website_page.html', {'childcare': childcare,
+                                                           'website_news_list': website_news_list})
 
 
 @login_required()

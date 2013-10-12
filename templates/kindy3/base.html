@@ -17,7 +17,13 @@
         <a href="/accounts/login">login</a> |
         <a href="/accounts/logout">logout</a> |
         <a href="/admin">administration</a> |
-        profile: <a href="/home">{{ user }}</a>
+        profile: <a href="/home">
+        {% if user.first_name == '' %}
+            {{ user }}
+        {% else %}
+            {{ user.first_name }} {{ user.last_name }}
+        {% endif %}
+        </a>
     </div>
 
     <div id="sidebar">

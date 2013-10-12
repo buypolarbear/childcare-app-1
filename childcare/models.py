@@ -74,3 +74,16 @@ class ChildcareNews(models.Model):
 
     def get_absolute_url(self):
         return '/childcare/%s/news/%s' % (self.childcare.pk, self.pk)
+
+
+'''
+class ChildcareNewsComments(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User)
+    content = models.TextField()
+    childcare_news = models.ForeignKey(ChildcareNews)
+
+    def __unicode__(self):
+        return self.content
+'''

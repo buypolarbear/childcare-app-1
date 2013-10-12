@@ -3,9 +3,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import assign_perm
+from child.models import Child
 from childcare.models import Childcare
 from classroom.forms import ClassroomCreateForm
 from classroom.models import Classroom
+from website.models import EnrolledChildren
 
 
 @login_required
@@ -31,5 +33,17 @@ def classroom_create(request, childcare_id):
 @login_required
 @permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
 def classroom(request, childcare_id, classroom_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom = get_object_or_404(Classroom, pk=classroom_id)
-    return render(request, 'classroom/classroom_detail.html', {'classroom': classroom})
+    return render(request, 'classroom/classroom_detail.html', {'classroom': classroom, 'childcare': childcare})
+
+
+@login_required
+@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
+def classroom_children_page(request, childcare_id, classroom_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    classroom = get_object_or_404(Classroom, pk=classroom_id)
+    enrolledchildren_list = EnrolledChildren.objects.filter(childcare=childcare, approved=True)
+    return render(request, 'classroom/children_page.html', {'classroom': classroom,
+                                                            'childcare': childcare,
+                                                            'enrolledchildren_list': enrolledchildren_list})

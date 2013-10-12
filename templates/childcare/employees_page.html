@@ -6,7 +6,7 @@
     <p><a href="/childcare/{{ childcare.pk }}/employees/add">Add/Remove employees</a>
     <ul>
     {% for employee in childcare.employees.all %}
-        <li>{{ employee }}</li>
+        <li>{{ employee.first_name }} {{ employee.last_name }} ({{ employee }})</li>
     {% endfor %}
     </ul>
 {% endblock content %}
