@@ -4,7 +4,6 @@
 
 {% block content %}
     <h1>Add a childcare news</h1>
-    <h2>Visible only to parents and childcare employees</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

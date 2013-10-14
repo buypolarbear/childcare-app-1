@@ -3,6 +3,10 @@
 {% block title %}{{ childcare }}{% endblock title %}
 
 {% block content %}
-    <h1>{{ news }}</h1>
-    <p>{{ news.content }}</p>
+    {% if news.public %}
+        <h1>{{ news }}</h1>
+        <p>{{ news.content }}</p>
+    {% else %}
+        <h1>The page you want to reach is not available.</h1>
+    {% endif %}
 {% endblock content %}

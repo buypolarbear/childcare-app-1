@@ -5,9 +5,9 @@ from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required_or_403
 from child.models import Child
 from classroom.models import Classroom
-from .forms import ChildcareCreateForm, ChildcareNewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsiteNewsCreateForm
-from .models import Childcare, ChildcareNews
-from website.models import EnrolledChildren, WebsiteNews
+from .forms import ChildcareCreateForm, NewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsitePageCreateForm
+from .models import Childcare, News
+from website.models import EnrolledChildren, Page
 
 
 @login_required
@@ -34,7 +34,7 @@ def childcare_create(request):
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def childcare(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    childcare_news = ChildcareNews.objects.filter(childcare=childcare)
+    childcare_news = News.objects.filter(childcare=childcare)
     classroom_list = Classroom.objects.filter(childcare=childcare)
     return render(request, 'childcare/childcare_detail.html', {'childcare': childcare,
                                                                'news_list': childcare_news,
@@ -46,7 +46,7 @@ def childcare(request, childcare_id):
 def childcare_news_create(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
-        form = ChildcareNewsCreateForm(request.POST)
+        form = NewsCreateForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.author = request.user
@@ -55,7 +55,7 @@ def childcare_news_create(request, childcare_id):
             form.save(commit=True)
             return HttpResponseRedirect('/childcare/%s' % childcare_id)
     else:
-        form = ChildcareNewsCreateForm()
+        form = NewsCreateForm()
     return render(request, 'childcare/childcare_news_create.html', {'form': form, 'childcare': childcare})
 
 
@@ -63,7 +63,7 @@ def childcare_news_create(request, childcare_id):
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def childcare_news_detail(request, childcare_id, news_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    news = get_object_or_404(ChildcareNews, pk=news_id, childcare=childcare_id)
+    news = get_object_or_404(News, pk=news_id, childcare=childcare_id)
     return render(request, 'childcare/childcare_news_detail.html', {'childcare': childcare, 'news': news})
 
 
@@ -98,18 +98,18 @@ def child_enrollment_application(request, childcare_id, child_id):
 
 @login_required()
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
-def classrooms_page(request, childcare_id):
+def classrooms_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom_list = Classroom.objects.filter(childcare=childcare)
-    return render(request, 'childcare/classes_page.html', {'childcare': childcare, 'classroom_list': classroom_list})
+    return render(request, 'childcare/classes_section.html', {'childcare': childcare, 'classroom_list': classroom_list})
 
 
 @login_required()
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
-def newsboard_page(request, childcare_id):
+def newsboard_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    news_list = ChildcareNews.objects.filter(childcare=childcare)
-    return render(request, 'childcare/newsboard_page.html', {'childcare': childcare, 'news_list': news_list})
+    news_list = News.objects.filter(childcare=childcare)
+    return render(request, 'childcare/newsboard_section.html', {'childcare': childcare, 'news_list': news_list})
 
 
 @login_required()
@@ -128,33 +128,34 @@ def employees_add(request, childcare_id):
 
 @login_required()
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
-def employees_page(request, childcare_id):
+def employees_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    return render(request, 'childcare/employees_page.html', {'childcare': childcare})
+    return render(request, 'childcare/employees_section.html', {'childcare': childcare})
 
 
 @login_required()
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
-def website_page(request, childcare_id):
+def website_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    website_news_list = WebsiteNews.objects.filter(childcare=childcare)
-    return render(request, 'childcare/website_page.html', {'childcare': childcare,
-                                                           'website_news_list': website_news_list})
+    website_news_list = News.objects.filter(childcare=childcare, public=True)
+    pages_list = Page.objects.filter(childcare=childcare)
+    return render(request, 'childcare/website_section.html', {'childcare': childcare,
+                                                           'website_news_list': website_news_list,
+                                                           'pages_list': pages_list})
 
 
 @login_required()
 @permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
-def website_news_create(request, childcare_id):
+def website_page_create(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
-        form = WebsiteNewsCreateForm(request.POST)
+        form = WebsitePageCreateForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.author = request.user
             obj.childcare = childcare
             obj.save
             form.save(commit=True)
-            return HttpResponseRedirect('/childcare/%s' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/website' % childcare_id)
     else:
-        form = WebsiteNewsCreateForm()
-    return render(request, 'childcare/website_news_create.html', {'childcare': childcare, 'form': form})
+        form = WebsitePageCreateForm()
+    return render(request, 'childcare/website_page_create.html', {'form': form, 'childcare': childcare})

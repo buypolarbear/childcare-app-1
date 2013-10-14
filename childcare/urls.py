@@ -8,16 +8,16 @@ urlpatterns = patterns('',
                        #url(r'^create/$', views.ChildcareCreate.as_view()),
 
                        #employees
-                       url(r'^(?P<childcare_id>\d+)/employees/$', views.employees_page),
+                       url(r'^(?P<childcare_id>\d+)/employees/$', views.employees_section),
                        url(r'^(?P<childcare_id>\d+)/employees/add/$', views.employees_add),
 
                        #newsboard
-                       url(r'^(?P<childcare_id>\d+)/newsboard/$', views.newsboard_page),
+                       url(r'^(?P<childcare_id>\d+)/newsboard/$', views.newsboard_section),
                        url(r'^(?P<childcare_id>\d+)/news/create/$', views.childcare_news_create),
                        url(r'^(?P<childcare_id>\d+)/news/(?P<news_id>\d+)/$', views.childcare_news_detail),
 
                        #classroom
-                       url(r'^(?P<childcare_id>\d+)/classrooms/$', views.classrooms_page),
+                       url(r'^(?P<childcare_id>\d+)/classrooms/$', views.classrooms_section),
                        url(r'^(?P<childcare_id>\d+)/', include('classroom.urls', namespace="classroom")),
 
                        #enrollment
@@ -25,6 +25,6 @@ urlpatterns = patterns('',
                        url(r'^(?P<childcare_id>\d+)/waiting-list/(?P<child_id>\d+)/$', views.child_enrollment_application),
 
                        #website page
-                       url(r'^(?P<childcare_id>\d+)/website/$', views.website_page),
-                       url(r'^(?P<childcare_id>\d+)/website/news/create/$', views.website_news_create),
+                       url(r'^(?P<childcare_id>\d+)/website/$', views.website_section),
+                       url(r'^(?P<childcare_id>\d+)/website/page/create/$', views.website_page_create),
                        )

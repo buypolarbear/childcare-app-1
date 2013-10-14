@@ -1,7 +1,7 @@
 from django.forms import ModelForm, ModelChoiceField, ModelMultipleChoiceField
 from classroom.models import Classroom
-from .models import Childcare, ChildcareNews
-from website.models import EnrolledChildren, WebsiteNews
+from .models import Childcare, News
+from website.models import EnrolledChildren, Page
 from django.contrib.auth.models import User
 import autocomplete_light
 from utils import autocomplete_light_registry
@@ -18,11 +18,12 @@ class ChildcareCreateForm(ModelForm):
         #exclude = ('slug',)
 
 
-class ChildcareNewsCreateForm(ModelForm):
+class NewsCreateForm(ModelForm):
     class Meta:
-        model = ChildcareNews
+        model = News
         fields = ('title',
-                  'content',)
+                  'content',
+                  'public',)
 
 
 class EnrollmentApplicationForm(ModelForm):
@@ -54,8 +55,9 @@ class EmployeesAddForm(ModelForm):
         )
 
 
-class WebsiteNewsCreateForm(ModelForm):
+class WebsitePageCreateForm(ModelForm):
     class Meta:
-        model = WebsiteNews
+        model = Page
         fields = ('title',
-                  'content',)
+                  'content',
+                  'order',)

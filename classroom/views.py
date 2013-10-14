@@ -40,10 +40,10 @@ def classroom(request, childcare_id, classroom_id):
 
 @login_required
 @permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
-def classroom_children_page(request, childcare_id, classroom_id):
+def classroom_children_section(request, childcare_id, classroom_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom = get_object_or_404(Classroom, pk=classroom_id)
-    enrolledchildren_list = EnrolledChildren.objects.filter(childcare=childcare, approved=True)
-    return render(request, 'classroom/children_page.html', {'classroom': classroom,
+    enrolledchildren_list = EnrolledChildren.objects.filter(childcare=childcare, approved=True, classroom=classroom)
+    return render(request, 'classroom/children_section.html', {'classroom': classroom,
                                                             'childcare': childcare,
                                                             'enrolledchildren_list': enrolledchildren_list})

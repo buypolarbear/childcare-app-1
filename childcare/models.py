@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from django.db import models
+from django.template.defaultfilters import slugify
 from childcare import countries
 from utils.roles import roles_childcare_init_new
 from utils.slugify import unique_slugify
@@ -59,6 +60,7 @@ class GroupChildcare(models.Model):
         unique_together = ['childcare', 'group']
 
 
+'''
 class ChildcareNews(models.Model):
     title = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
@@ -74,7 +76,31 @@ class ChildcareNews(models.Model):
 
     def get_absolute_url(self):
         return '/childcare/%s/news/%s' % (self.childcare.pk, self.pk)
+'''
 
+
+class News(models.Model):
+    title = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User)
+    content = models.TextField()
+    childcare = models.ForeignKey(Childcare)
+    public = models.BooleanField(default=False)
+    #images
+    #documents/files
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created']
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+            super(News, self).save(*args, **kwargs)
 
 '''
 class ChildcareNewsComments(models.Model):
