@@ -12,7 +12,13 @@
 <h1><a href="/{{ childcare.slug }}">{{ childcare }}</a></h1>
     <div id="sidebar">
         {% block sidebar %}
-            <p><a href="/{{ childcare.slug }}/enroll">Enroll your child</a></p>
+            <p>
+                {% for page in pages_list %}
+                <a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a> |
+                {% endfor %}
+                <a href="/{{ childcare.slug }}/news">News</a> |
+                <a href="/{{ childcare.slug }}/enroll">Enroll your child</a>
+            </p>
         {% endblock %}
     </div>
 

@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required_or_403
 from child.models import Child
 from classroom.models import Classroom
-from .forms import ChildcareCreateForm, NewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsitePageCreateForm
+from .forms import ChildcareCreateForm, NewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsitePageCreateForm, FirstPageForm
 from .models import Childcare, News
 from website.models import EnrolledChildren, Page
 
@@ -159,3 +159,17 @@ def website_page_create(request, childcare_id):
     else:
         form = WebsitePageCreateForm()
     return render(request, 'childcare/website_page_create.html', {'form': form, 'childcare': childcare})
+
+
+@login_required()
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def website_first_page_edit(request, childcare_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    if request.method == 'POST':
+        form = FirstPageForm(request.POST, instance=childcare)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/childcare/%s/website' % childcare_id)
+    else:
+        form = FirstPageForm(instance=childcare)
+    return render(request, 'childcare/first_page_edit.html', {'form': form, 'childcare': childcare})

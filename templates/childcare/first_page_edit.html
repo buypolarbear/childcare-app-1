@@ -1,0 +1,12 @@
+{% extends 'childcare/childcare_base.html' %}
+
+{% block title %}Edit first page{% endblock title %}
+
+{% block content %}
+    <h1>Edit first page description for {{ childcare }} website</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Edit">
+    </form>
+{% endblock content %}

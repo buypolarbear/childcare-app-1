@@ -43,7 +43,6 @@ class EnrollmentApplicationForm(ModelForm):
 class EmployeesAddForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EmployeesAddForm, self).__init__(*args, **kwargs)
-        #self._childcare_id = childcare_id
         self.fields['employees'] = ModelMultipleChoiceField(
             queryset=User.objects.all(),
             widget=autocomplete_light.MultipleChoiceWidget('UserAutocomplete'))
@@ -52,6 +51,17 @@ class EmployeesAddForm(ModelForm):
         model = Childcare
         fields = (
             'employees',
+        )
+
+
+class FirstPageForm(ModelForm):
+    #def __init__(self, *args, **kwargs):
+    #    super(FirstPageForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Childcare
+        fields = (
+            'description',
         )
 
 

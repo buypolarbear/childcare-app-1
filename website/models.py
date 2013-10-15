@@ -20,7 +20,7 @@ class Page(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-created', 'order']
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -38,9 +38,6 @@ class EnrolledChildren(models.Model):
 
     class Meta:
         unique_together = ['child', 'childcare']
-
-
-#class FirstPage(models.Model):
 
 
 '''

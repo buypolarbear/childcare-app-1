@@ -10,14 +10,22 @@
         <a href="/childcare/{{ childcare.pk }}/website/page/create">Add page</a>
     </p>
 
-    <p>News:</p>
+    <h2>First Page (child care description):</h2>
+    {% if childcare.description == '' %}
+        <p><a href="/childcare/{{ childcare.pk }}/website/first-page/edit">Add a description</a></p>
+    {% else %}
+        <p>{{ childcare.description }} <a href="/childcare/{{ childcare.pk }}/website/first-page/edit">Edit</a></p>
+    {% endif %}
+
+
+    <h2>News:</h2>
     <ul>
     {% for news in website_news_list %}
         <li><a href="/{{ childcare.slug }}/news/{{ news.slug }}">{{ news }}</a></li>
     {% endfor %}
     </ul>
 
-    <p>Pages:</p>
+    <h2>Pages:</h2>
     <ul>
     {% for page in pages_list %}
         <li><a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a></li>
