@@ -17,6 +17,8 @@ class Childcare(models.Model):
     manager = models.ForeignKey(User, related_name='childcare_manager')
     employees = models.ManyToManyField(User, related_name='childcare_employees', blank=True)
     theme = models.CharField(max_length=100, blank=True)
+    #email = models.CharField(max_length=100, blank=True)
+    #phone_number = models.CharField(max_length=100, blank=True)
     #subscription
     #subscription_expires
 
@@ -103,12 +105,12 @@ class News(models.Model):
             super(News, self).save(*args, **kwargs)
 
 '''
-class ChildcareNewsComments(models.Model):
+class NewsComments(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User)
     content = models.TextField()
-    childcare_news = models.ForeignKey(ChildcareNews)
+    news = models.ForeignKey(News)
 
     def __unicode__(self):
         return self.content

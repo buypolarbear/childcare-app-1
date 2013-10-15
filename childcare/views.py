@@ -51,7 +51,7 @@ def childcare_news_create(request, childcare_id):
             obj = form.save(commit=False)
             obj.author = request.user
             obj.childcare = childcare
-            obj.save
+            obj.save()
             form.save(commit=True)
             return HttpResponseRedirect('/childcare/%s' % childcare_id)
     else:

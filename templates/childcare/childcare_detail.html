@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>{{ childcare.name }}</h1>
-    <p>Manager: {{ childcare.manager }}</p>
+    <p>Manager: {{ childcare.manager.first_name }} {{ childcare.manager.last_name }} ({{ childcare.manager }})</p>
     <p>Address: {{ childcare.street_address }}, {{ childcare.city }}, {{ childcare.country }}</p>
 
     {% if news_list %}

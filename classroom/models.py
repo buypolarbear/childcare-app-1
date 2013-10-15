@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-#from child.models import Child
 from childcare.models import Childcare
 
 
@@ -19,8 +18,10 @@ class Classroom(models.Model):
         return 'childcare/%s/classroom/%s' % (self.childcare.pk, self.pk)
 
 
-'''
-class ClassroomChildren(models.Model):
-    child = models.ForeignKey(Child)
+class Diary(models.Model):
+    author = models.ForeignKey(User)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(auto_now=True)
     classroom = models.ForeignKey(Classroom)
-'''
+    content = models.TextField()
+    #images

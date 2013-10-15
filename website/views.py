@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from childcare.models import Childcare, News
 from website.forms import EnrollChildForm
@@ -41,11 +41,14 @@ def enroll_child(request, childcare_slug):
     if request.method == 'POST':
         form = EnrollChildForm(request.user, request.POST)
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.childcare = childcare
-            obj.save()
-            form.save(commit=True)
-            return HttpResponseRedirect('/%s/enrollment-sent' % childcare_slug)
+            try:
+                obj = form.save(commit=False)
+                obj.childcare = childcare
+                obj.save()
+                form.save(commit=True)
+                return HttpResponseRedirect('/%s/enrollment-sent' % childcare_slug)
+            except:
+                return HttpResponse("The enrollment application for your child has already been sent.")
     else:
         form = EnrollChildForm(request.user)
     return render(request, 'website/enroll_child.html', {'form': form,
