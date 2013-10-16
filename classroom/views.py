@@ -10,8 +10,8 @@ from classroom.models import Classroom, Diary
 from website.models import EnrolledChildren
 
 
-@login_required
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def classroom_create(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
@@ -30,16 +30,16 @@ def classroom_create(request, childcare_id):
     return render(request, 'classroom/classroom_create.html', {'form': form, 'childcare': childcare})
 
 
-@login_required
-@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
 def classroom(request, childcare_id, classroom_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom = get_object_or_404(Classroom, pk=classroom_id)
     return render(request, 'classroom/classroom_detail.html', {'classroom': classroom, 'childcare': childcare})
 
 
-@login_required
-@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
 def classroom_children_section(request, childcare_id, classroom_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom = get_object_or_404(Classroom, pk=classroom_id)
@@ -49,8 +49,8 @@ def classroom_children_section(request, childcare_id, classroom_id):
                                                             'enrolledchildren_list': enrolledchildren_list})
 
 
-@login_required
-@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
 def diary_create(request, childcare_id, classroom_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom = get_object_or_404(Classroom, pk=classroom_id)
@@ -70,8 +70,8 @@ def diary_create(request, childcare_id, classroom_id):
                                                            'classroom': classroom})
 
 
-@login_required
-@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('classroom_view', (Childcare, 'pk', 'childcare_id'))
 def diary_section(request, childcare_id, classroom_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom = get_object_or_404(Classroom, pk=classroom_id)

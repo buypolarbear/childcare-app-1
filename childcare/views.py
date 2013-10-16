@@ -10,7 +10,7 @@ from .models import Childcare, News
 from website.models import EnrolledChildren, Page
 
 
-@login_required
+#@login_required
 def childcare_create(request):
     if request.method == 'POST':
         form = ChildcareCreateForm(request.POST)
@@ -30,8 +30,8 @@ def childcare_create(request):
     return render(request, 'childcare/childcare_create.html', {'form': form})
 
 
-@login_required
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def childcare(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     childcare_news = News.objects.filter(childcare=childcare)
@@ -41,8 +41,8 @@ def childcare(request, childcare_id):
                                                                'classroom_list': classroom_list})
 
 
-@login_required
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def childcare_news_create(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
@@ -59,16 +59,16 @@ def childcare_news_create(request, childcare_id):
     return render(request, 'childcare/childcare_news_create.html', {'form': form, 'childcare': childcare})
 
 
-@login_required
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def childcare_news_detail(request, childcare_id, news_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     news = get_object_or_404(News, pk=news_id, childcare=childcare_id)
     return render(request, 'childcare/childcare_news_detail.html', {'childcare': childcare, 'news': news})
 
 
-@login_required
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def children_enrollment_list(request, childcare_id):
     #waiting list
     childcare = get_object_or_404(Childcare, pk=childcare_id)
@@ -78,8 +78,8 @@ def children_enrollment_list(request, childcare_id):
                   {'childcare': childcare, 'enrollment_list': enrollment_list})
 
 
-@login_required
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def child_enrollment_application(request, childcare_id, child_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     child = get_object_or_404(Child, pk=child_id)
@@ -96,24 +96,24 @@ def child_enrollment_application(request, childcare_id, child_id):
                   {'childcare': childcare, 'application': application, 'form': form})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def classrooms_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     classroom_list = Classroom.objects.filter(childcare=childcare)
     return render(request, 'childcare/classes_section.html', {'childcare': childcare, 'classroom_list': classroom_list})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def newsboard_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     news_list = News.objects.filter(childcare=childcare)
     return render(request, 'childcare/newsboard_section.html', {'childcare': childcare, 'news_list': news_list})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def employees_add(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
@@ -126,15 +126,15 @@ def employees_add(request, childcare_id):
     return render(request, 'childcare/employees_add.html', {'form': form, 'childcare': childcare})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def employees_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     return render(request, 'childcare/employees_section.html', {'childcare': childcare})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def website_section(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     website_news_list = News.objects.filter(childcare=childcare, public=True)
@@ -144,8 +144,8 @@ def website_section(request, childcare_id):
                                                            'pages_list': pages_list})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def website_page_create(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':
@@ -161,8 +161,8 @@ def website_page_create(request, childcare_id):
     return render(request, 'childcare/website_page_create.html', {'form': form, 'childcare': childcare})
 
 
-@login_required()
-@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+#@login_required()
+#@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
 def website_first_page_edit(request, childcare_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     if request.method == 'POST':

@@ -1,9 +1,9 @@
 # Django settings for kindy3 project.
 import os
 
-DEBUG = True
+#DEBUG = True
 # TODO: HEROKU
-#DEBUG = False
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
