@@ -1,9 +1,9 @@
 # Django settings for kindy3 project.
 import os
 
-#DEBUG = True
+DEBUG = True
 # TODO: HEROKU
-DEBUG = False
+#DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,8 +12,10 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-'''
+
 DATABASES = {
+
+'''
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': '/home/matej/PycharmProjects/kindy3/database5.db',  # Or path to database file if using sqlite3.
@@ -22,11 +24,11 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',  # Set to empty string for default.
-    }
+    },
 '''
 
 # TODO: UPLOAD NA HEROKU!!!
-DATABASES = {
+
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
          'NAME': 'db7b02iefjhfvl',                      # Or path to database file if using sqlite3.
@@ -35,7 +37,8 @@ DATABASES = {
          'PASSWORD': 'C-F3pRlWaGk9JdXzJYWQA3vzRv',
          'HOST': 'ec2-54-235-92-161.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
          'PORT': '5432',                      # Set to empty string for default.
-     }
+     },
+
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -180,6 +183,9 @@ LOGGING = {
     }
 }
 
+ANONYMOUS_USER_ID = -1
+GUARDIAN_RENDER_403 = True
+
 # TODO: UPLOAD NA HEROKU!!!
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -192,7 +198,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-import os
+#import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
@@ -205,6 +211,3 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
     'guardian.backends.ObjectPermissionBackend',
 )
-
-ANONYMOUS_USER_ID = -1
-GUARDIAN_RENDER_403 = True
