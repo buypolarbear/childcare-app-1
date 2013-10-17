@@ -13,7 +13,15 @@
 				<div class="navbar-header">
 					<a href="/" class="logo"><img src="{{ STATIC_URL }}img/logo.png" alt="Kindy"></a>
 				</div>
-				<p class="navbar-text pull-right">profile: <a href="/home">{% if user.first_name == '' %} {{ user }} {% else %} {{ user.first_name }} {{ user.last_name }} {% endif %}</a></p>
+				<p class="navbar-text pull-right">
+                    <a href="/home">
+                        {% if user.first_name == '' %}
+                            {{ user }}
+                        {% else %}
+                            {{ user.first_name }} {{ user.last_name }}
+                        {% endif %}
+                    </a>
+                </p>
 			</div>
 		</div>
 		<div class="navbar navbar-default navbar-static-top sub-nav">
@@ -23,7 +31,7 @@
 						<p class="navbar-text">{% block sidebar-title %}{% endblock %}</p>
 					</div>
 					<div class="col-md-9">
-						<p class="navbar-text">Child care center name | Classrooms</p>
+						<ol class="navbar-text breadcrumb">{% block breadcrumb %}{% endblock %}</ol>
 					</div>
 				</div>
 			</div>

@@ -1,9 +1,15 @@
 {% extends 'childcare/childcare_base.html' %}
 
-{% block title %}Add a childcare news{% endblock title %}
+{% block title %}Create news{% endblock title %}
+
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/newsboard">Newsboard</a></li>
+    <li>Create</li>
+{% endblock %}
 
 {% block content %}
-    <h1>Add a childcare news</h1>
+    <h1>Create news</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

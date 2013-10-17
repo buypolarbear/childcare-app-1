@@ -2,9 +2,11 @@
 
 {% block title %}Kindy - child care management system{% endblock %}
 
+{% block sidebar-title %}Kindy demo{% endblock %}
+
 {% block content %}
-	<h1>Kindy</h1>
-	<h2>Run your preschool effectively</h2>
+	<h1>Kindy demo</h1>
+	<h2>A management system for child care centers</h2>
 	{% if user.is_authenticated %}
 		<p>You are logged in. Your username is: <a href="/home/">{{ user }}</a>.</p>
 	{% else %}

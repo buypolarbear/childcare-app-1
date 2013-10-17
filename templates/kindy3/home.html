@@ -2,8 +2,20 @@
 
 {% block title %}Kindy Home{% endblock %}
 
+{% block sidebar-title %}
+	<a href="/home">Home dashboard</a>
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ user.first_name }} {{ user.last_name }}
+{% endblock %}
+
+{% block sidebar %}
+    <li><a>Edit profile</a></li>
+{% endblock %}
+
 {% block content %}
-    <h1>Hello {{ user }}!</h1>
+    <h1>Hello {{ user.first_name }}!</h1>
 
     {% if childcare_list %}
         <p>Your childcare sites:</p>

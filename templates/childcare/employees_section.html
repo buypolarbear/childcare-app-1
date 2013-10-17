@@ -1,8 +1,13 @@
 {% extends 'childcare/childcare_base.html' %}
 {% block title %}{{ childcare }} employees{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li>Employees</li>
+{% endblock %}
+
 {% block content %}
-    <h1>{{ childcare }} employees</h1>
+    <h1>Employees</h1>
     <p><a href="/childcare/{{ childcare.pk }}/employees/add">Add/Remove employees</a>
     <ul>
     {% for employee in childcare.employees.all %}

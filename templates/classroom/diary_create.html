@@ -1,6 +1,12 @@
 {% extends 'classroom/classroom_base.html' %}
 {% block title %}{{ classroom }} | Daily diary{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary">Diary</a></li>
+    <li>Create</li>
+{% endblock %}
+
 {% block content %}
     <h1>Create a diary</h1>
     <form method="post" enctype="multipart/form-data">

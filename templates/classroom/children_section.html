@@ -1,8 +1,13 @@
 {% extends 'classroom/classroom_base.html' %}
 {% block title %}{{ classroom }} | children{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li>Children</li>
+{% endblock %}
+
 {% block content %}
-    <h1>{{ classroom }}: children</h1>
+    <h1>Children</h1>
     <ul>
     {% for object in enrolledchildren_list %}
         <li>{{ object.child }}</li>

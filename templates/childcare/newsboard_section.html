@@ -1,8 +1,13 @@
 {% extends 'childcare/childcare_base.html' %}
 {% block title %}{{ childcare }} newsboard{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li>Newsboard</li>
+{% endblock %}
+
 {% block content %}
-    <h1>{{ childcare }} newsboard</h1>
+    <h1>Newsboard</h1>
     <p><a href="/childcare/{{ childcare.pk }}/news/create">Add news</a></p>
     <ul>
     {% for news in news_list %}

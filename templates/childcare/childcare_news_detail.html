@@ -2,6 +2,12 @@
 
 {% block title %}{{ news }}{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/newsboard">Newsboard</a></li>
+    <li>News</li>
+{% endblock %}
+
 {% block content %}
     <h1>{{ news }}</h1>
     <p>{{ news.content }}</p>

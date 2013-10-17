@@ -2,6 +2,12 @@
 
 {% block title %}{{ childcare.name }} waiting list{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classrooms">Classrooms</a></li>
+    <li>Waiting list</li>
+{% endblock %}
+
 {% block content %}
     <h1>Waiting list for {{ childcare.name }}</h1>
     {% if enrollment_list %}

@@ -5,6 +5,10 @@
 	<a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">Classroom dashboard</a>
 {% endblock %}
 
+{% block breadcrumb %}
+    <li>{{ classroom }}</li>
+{% endblock %}
+
 {% block sidebar %}
     <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/children">Children</a></li>
     <li><a href="#">Attendance</a></li>

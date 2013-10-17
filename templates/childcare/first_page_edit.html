@@ -2,6 +2,12 @@
 
 {% block title %}Edit first page{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/website">Website</a></li>
+    <li>First page</li>
+{% endblock %}
+
 {% block content %}
     <h1>Edit first page description for {{ childcare }} website</h1>
     <form method="post">

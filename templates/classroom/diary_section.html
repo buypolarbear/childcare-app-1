@@ -1,8 +1,13 @@
 {% extends 'classroom/classroom_base.html' %}
 {% block title %}{{ classroom }} | Daily diary{% endblock title %}
 
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li>Daily diary</li>
+{% endblock %}
+
 {% block content %}
-    <h1>{{ classroom }}: Daily diary</h1>
+    <h1>Daily diary</h1>
     <p><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary/create">Add a diary</a></p>
     <ul>
     {% for diary in diary_list %}
