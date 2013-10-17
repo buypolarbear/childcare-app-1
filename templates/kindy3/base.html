@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+{% load staticfiles %}
 <head>
     <style>
       input.required, error {
@@ -8,6 +8,7 @@
       }
     </style>
     <title>{% block title %}Tagging Exploration{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}kindy.css">
 </head>
 
 <body>

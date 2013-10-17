@@ -10,7 +10,7 @@ def main(request):
 
 
 # user profile site
-#@login_required
+@login_required
 def home(request):
     childcare_list = Childcare.objects.filter(manager=request.user)
     children_list = Child.objects.filter(guardians__id=request.user.id)

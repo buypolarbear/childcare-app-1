@@ -33,7 +33,7 @@ def news_detail(request, childcare_slug, news_slug):
                                                         'pages_list': pages_list})
 
 
-#@login_required
+@login_required
 def enroll_child(request, childcare_slug):
     childcare = get_object_or_404(Childcare, slug=childcare_slug)
     pages_list = Page.objects.filter(childcare=childcare)

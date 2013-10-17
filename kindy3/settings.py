@@ -1,9 +1,9 @@
 # Django settings for kindy3 project.
 import os
 
-#DEBUG = True
+DEBUG = True
 # TODO: HEROKU
-DEBUG = False
+#DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -14,8 +14,6 @@ MANAGERS = ADMINS
 
 
 DATABASES = {
-
-'''
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': '/home/matej/PycharmProjects/kindy3/database5.db',  # Or path to database file if using sqlite3.
@@ -25,8 +23,8 @@ DATABASES = {
         'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',  # Set to empty string for default.
     },
+}
 '''
-
 # TODO: UPLOAD NA HEROKU!!!
 
      'default': {
@@ -40,6 +38,7 @@ DATABASES = {
      },
 
 }
+'''
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -83,22 +82,23 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 # TODO: Heroku
-#STATIC_ROOT = os.path.join(DIRNAME, 'static/')
+STATIC_ROOT = os.path.join(DIRNAME, 'static-serve/')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 # TODO: Heroku
-#STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 # TODO: Heroku
-'''
+
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(DIRNAME, "static").replace('\\', '/'),
 )
-'''
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -187,6 +187,7 @@ LOGGING = {
     }
 }
 
+'''
 # TODO: UPLOAD NA HEROKU!!!
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -208,6 +209,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+'''
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
