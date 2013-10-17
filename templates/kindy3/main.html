@@ -1,13 +1,13 @@
 {% extends 'kindy3/base.html' %}
 
-{% block title %}Kindy preschool & kindergarten management system{% endblock %}
+{% block title %}Kindy - child care management system{% endblock %}
 
 {% block content %}
-    <h1>Kindy</h1>
-        <h2>run your preschool effectively</h2>
-    {% if user.is_authenticated %}
-        <p>You are logged in. Your username is: <a href="/home">{{ user }}</a>.</p>
-    {% else %}
-        <p>Welcome to Kindy. Please <a href="accounts/login">log in!</a></p>
-    {% endif %}
+	<h1>Kindy</h1>
+	<h2>Run your preschool effectively</h2>
+	{% if user.is_authenticated %}
+		<p>You are logged in. Your username is: <a href="/home/">{{ user }}</a>.</p>
+	{% else %}
+		<p>Welcome to Kindy. Please <a href="/accounts/login/">log in</a>!</p>
+	{% endif %}
 {% endblock %}

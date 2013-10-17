@@ -1,38 +1,48 @@
+{% load staticfiles %}
 <!DOCTYPE html>
-<html>
-
-<head>
-    <style>
-      input.required, error {
-        border: 2px solid red;
-      }
-    </style>
-    <title>{% block title %}Tagging Exploration{% endblock %}</title>
-</head>
-
-<body>
-    <div>
-        <a href="/">main</a> |
-        <!--<a href="/accounts/register">register</a> |-->
-        <a href="/accounts/login">login</a> |
-        <a href="/accounts/logout">logout</a> |
-        <a href="/admin">administration</a> |
-        profile: <a href="/home">
-        {% if user.first_name == '' %}
-            {{ user }}
-        {% else %}
-            {{ user.first_name }} {{ user.last_name }}
-        {% endif %}
-        </a>
-    </div>
-
-    <div id="sidebar">
-        {% block sidebar %}{% endblock %}
-    </div>
-
-    <div id="content">
-        {% block content %}{% endblock %}
-        {% block main_content %}{% endblock %}
-    </div>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}Tagging Exploration{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/kindy.css">
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-static-top main-nav">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="/" class="logo"><img src="{{ STATIC_URL }}img/logo.png" alt="Kindy"></a>
+				</div>
+				<p class="navbar-text pull-right">profile: <a href="/home">{% if user.first_name == '' %} {{ user }} {% else %} {{ user.first_name }} {{ user.last_name }} {% endif %}</a></p>
+			</div>
+		</div>
+		<div class="navbar navbar-default navbar-static-top sub-nav">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 home">
+						<p class="navbar-text">Classroom</p>
+					</div>
+					<div class="col-md-9">
+						<p class="navbar-text">Child care center name | Classrooms</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<ul class="col-md-3 sidebar">
+					<li><a href="#">Calendar</a></li>
+					<li><a href="#">Employees</a></li>
+					<li><a href="#">Classrooms</a></li>
+					<li><a href="#">Children</a></li>
+					<li><a href="#">Website</a></li>
+					<li><a href="#">Gallery</a></li>
+				</ul>
+				<div class="col-md-9 content">
+					{% block content %}{% endblock %}
+					{% block main_content %}{% endblock %}
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
