@@ -1,9 +1,13 @@
 {% extends 'kindy3/base.html' %}
 {% load guardian_tags %}
+
+{% block sidebar-title %}
+	<a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">Classroom dashboard</a>
+{% endblock %}
+
 {% block sidebar %}
-<p><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">Classroom dashboard:</a>
-    <a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/children">Children</a> |
-    Attendance |
-    <a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary">TODO:Daily diary</a> |
-    Plans
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/children">Children</a></li>
+    <li><a href="#">Attendance</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary">Daily diary</a></li>
+    <li><a href="#">Plans</a></li>
 {% endblock %}

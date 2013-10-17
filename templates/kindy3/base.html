@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 home">
-						<p class="navbar-text">Classroom</p>
+						<p class="navbar-text">{% block sidebar-title %}{% endblock %}</p>
 					</div>
 					<div class="col-md-9">
 						<p class="navbar-text">Child care center name | Classrooms</p>
@@ -31,12 +31,7 @@
 		<div class="container">
 			<div class="row">
 				<ul class="col-md-3 sidebar">
-					<li><a href="#">Calendar</a></li>
-					<li><a href="#">Employees</a></li>
-					<li><a href="#">Classrooms</a></li>
-					<li><a href="#">Children</a></li>
-					<li><a href="#">Website</a></li>
-					<li><a href="#">Gallery</a></li>
+					{% block sidebar %}{% endblock %}
 				</ul>
 				<div class="col-md-9 content">
 					{% block content %}{% endblock %}

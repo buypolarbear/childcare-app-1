@@ -18,6 +18,7 @@ body { background:#f5f5f5; }
 	margin:0;
 }
 
+.sub-nav a { color:#fff; }
 .sub-nav .navbar-text { color:#fff; }
 
 .sub-nav .home { background:#1db9a4; }
