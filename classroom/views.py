@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import assign_perm
-from child.models import Child
 from childcare.models import Childcare
 from classroom.forms import ClassroomCreateForm, DiaryCreateForm
 from classroom.models import Classroom, Diary
