@@ -1,9 +1,9 @@
 # Django settings for kindy3 project.
 import os
 
-DEBUG = True
+#DEBUG = True
 # TODO: HEROKU
-#DEBUG = False
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -14,6 +14,7 @@ MANAGERS = ADMINS
 
 
 DATABASES = {
+'''
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'database5.db',  # Or path to database file if using sqlite3.
@@ -38,7 +39,7 @@ DATABASES = {
      },
 
 }
-'''
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -187,7 +188,7 @@ LOGGING = {
     }
 }
 
-'''
+
 # TODO: UPLOAD NA HEROKU!!!
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -209,7 +210,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-'''
+
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
