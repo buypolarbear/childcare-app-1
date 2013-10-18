@@ -3,5 +3,5 @@
 
 {% block content %}
     <h1>{{ classroom }}</h1>
-    <p>{{ classroom.description }}</p>
+    <p>{{ classroom.description|linebreaks }}</p>
 {% endblock content %}
