@@ -3,7 +3,7 @@
 {% block title %}{{ childcare }} news{% endblock title %}
 
 {% block content %}
-    <p>News:</p>
+    <h1>News</h1>
     <ul>
     {% for news in news_list %}
         <li><a href="/{{ childcare.slug }}/news/{{ news.slug }}">{{ news }}</a></li>
