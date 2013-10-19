@@ -61,3 +61,7 @@ ul.sidebar li a.active {
 	padding-bottom:13px;
 }
 /* END SIDEBAR */
+
+/* CONTENT */
+.content { padding:10px 30px; }
+/* END CONTENT */
