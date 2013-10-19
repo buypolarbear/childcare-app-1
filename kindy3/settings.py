@@ -1,9 +1,9 @@
 # Django settings for kindy3 project.
 import os
 
-#DEBUG = True
+DEBUG = True
 # TODO: HEROKU
-DEBUG = False
+#DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -14,7 +14,7 @@ MANAGERS = ADMINS
 
 
 DATABASES = {
-'''
+
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'database5.db',  # Or path to database file if using sqlite3.
@@ -25,9 +25,10 @@ DATABASES = {
         'PORT': '',  # Set to empty string for default.
     },
 }
-'''
-# TODO: UPLOAD NA HEROKU!!!
 
+
+# TODO: UPLOAD NA HEROKU!!!
+'''
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
          'NAME': 'db7b02iefjhfvl',                      # Or path to database file if using sqlite3.
@@ -39,7 +40,7 @@ DATABASES = {
      },
 
 }
-
+'''
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -82,17 +83,13 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-# TODO: Heroku
 STATIC_ROOT = os.path.join(DIRNAME, 'static-serve/')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-# TODO: Heroku
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-# TODO: Heroku
-
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -188,7 +185,7 @@ LOGGING = {
     }
 }
 
-
+'''
 # TODO: UPLOAD NA HEROKU!!!
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -210,7 +207,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
+'''
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default

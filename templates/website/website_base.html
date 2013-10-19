@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-      input.required, error {
-        border: 2px solid red;
-      }
-    </style>
-    <title>{% block title %}Tagging Exploration{% endblock %}</title>
-</head>
-<body>
-<h1><a href="/{{ childcare.slug }}">{{ childcare }}</a></h1>
-    <div id="sidebar">
-        {% block sidebar %}
-            <p>
-                {% for page in pages_list %}
-                <a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a> |
-                {% endfor %}
-                <a href="/{{ childcare.slug }}/news">News</a> |
-                <a href="/{{ childcare.slug }}/enroll">Enroll your child</a>
-            </p>
-        {% endblock %}
-    </div>
-
-    <div id="content">
-        {% block content %}{% endblock %}
-        {% block main_content %}{% endblock %}
-    </div>
-
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}Tagging Exploration{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/website.css">
+	</head>
+	<body>
+		<div class="container wrapper">
+			<a href="/{{ childcare.slug }}/"><img src="{{ STATIC_URL }}tmp/yc.gif" alt="{{ childcare }}"></a>
+			<div id="content">
+			{% block content %}{% endblock %}
+			{% block main_content %}{% endblock %}
+			</div>
+			<div class="nav text-center">
+				<p>
+				{% block sidebar %}
+				{% for page in pages_list %}
+				<a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a> |
+				{% endfor %}
+				<a href="/{{ childcare.slug }}/news">News</a> |
+				<a href="/{{ childcare.slug }}/enroll">Enroll your child</a>
+				{% endblock %}
+				</p>
+			</div>
+		</div>
+	</body>
 </html>

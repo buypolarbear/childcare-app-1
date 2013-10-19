@@ -27,6 +27,11 @@ body { background:#f5f5f5; }
 	background:url(/static/img/icon-home.png) no-repeat left center;
 	padding-left:40px;
 }
+
+.sub-nav .breadcrumb {
+	background:none;
+	margin:7px 0;
+}
 /* END BOOTSTRAP MODIFICATIONS */
 
 /* NAVIGATION */
@@ -56,3 +61,7 @@ ul.sidebar li a.active {
 	padding-bottom:13px;
 }
 /* END SIDEBAR */
+
+/* CONTENT */
+.content { padding:10px 30px; }
+/* END CONTENT */
