@@ -13,15 +13,7 @@
 				<div class="navbar-header">
 					<a href="/" class="logo"><img src="{{ STATIC_URL }}img/logo.png" alt="Kindy"></a>
 				</div>
-				<p class="navbar-text pull-right">
-                    <a href="/home">
-                        {% if user.first_name == '' %}
-                            {{ user }}
-                        {% else %}
-                            {{ user.first_name }} {{ user.last_name }}
-                        {% endif %}
-                    </a>
-                </p>
+				<p class="navbar-text pull-right"><span class="glyphicon glyphicon-user"></span> <a href="/home/">{% if user.first_name == '' %}{{ user }}{% else %}{{ user.first_name }} {{ user.last_name }}{% endif %}</a></p>
 			</div>
 		</div>
 		<div class="navbar navbar-default navbar-static-top sub-nav">
