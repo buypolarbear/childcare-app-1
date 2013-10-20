@@ -225,11 +225,11 @@ if not LOCAL_ENV_BOOL:
     #import os
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     #STATIC_ROOT = 'staticfiles'
-    STATIC_ROOT = 'staticfiles'
-    STATIC_URL = '/static/'
-    STATICFILES_DIRS = (
+    #STATIC_ROOT = 'staticfiles'
+    #STATIC_URL = '/static/'
+    '''STATICFILES_DIRS = (
         os.path.join(STATIC_ROOT, 'static'),
-    )
+    )'''
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
