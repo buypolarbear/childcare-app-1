@@ -112,7 +112,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = os.path.join(DIRNAME, 'static-serve/')
+STATIC_ROOT = os.path.join(DIRNAME, 'staticfiles/')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -226,7 +226,7 @@ if not LOCAL_ENV_BOOL:
     #import os
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     #STATIC_ROOT = 'staticfiles'
-    STATIC_ROOT = 'static-serve'
+    STATIC_ROOT = 'static'
     STATIC_URL = '/static/'
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
