@@ -1,7 +1,27 @@
 # Django settings for kindy3 project.
 import os
+import dj_database_url
 
-DEBUG = True
+
+'''preverimo ali app tece lokalno ali na heroku
+
+    na Heroku smo nastavili: heroku config:add DJANGO_LOCAL_DEV=0
+'''
+try:
+    LOCAL_ENV = os.environ["DJANGO_LOCAL_DEV"]
+    if LOCAL_ENV == 0 or LOCAL_ENV == '0':
+        LOCAL_ENV_BOOL = False
+    else:
+        LOCAL_ENV_BOOL = True
+except KeyError:
+    LOCAL_ENV_BOOL = True
+
+if LOCAL_ENV_BOOL:
+    DEBUG = True
+else:
+    DEBUG = False
+
+#DEBUG = True
 # TODO: HEROKU
 #DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -12,20 +32,30 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
-DATABASES = {
-
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'database5.db',  # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
-    },
-}
-
+if LOCAL_ENV_BOOL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'database5.db',  # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+            'PORT': '',  # Set to empty string for default.
+        },
+    }
+else:
+    DATABASES = {
+        'default': {
+             'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+             'NAME': 'db7b02iefjhfvl',                      # Or path to database file if using sqlite3.
+             # The following settings are not used with sqlite3:
+             'USER': 'latdjrswgqbgbu',
+             'PASSWORD': 'C-F3pRlWaGk9JdXzJYWQA3vzRv',
+             'HOST': 'ec2-54-235-92-161.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+             'PORT': '5432',                      # Set to empty string for default.
+        },
+    }
 
 # TODO: UPLOAD NA HEROKU!!!
 '''
@@ -184,29 +214,27 @@ LOGGING = {
     }
 }
 
-'''
-# TODO: UPLOAD NA HEROKU!!!
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+if not LOCAL_ENV_BOOL:
+    # TODO: UPLOAD NA HEROKU!!!
+    # Parse database configuration from $DATABASE_URL
+    DATABASES['default'] = dj_database_url.config()
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
+    # Allow all host headers
+    ALLOWED_HOSTS = ['*']
 
-# Static asset configuration
-#import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#STATIC_ROOT = 'staticfiles'
-STATIC_ROOT = 'static'
-STATIC_URL = '/static/'
+    # Static asset configuration
+    #import os
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    #STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = 'static'
+    STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-'''
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
