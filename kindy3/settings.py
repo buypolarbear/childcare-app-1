@@ -1,6 +1,5 @@
 # Django settings for kindy3 project.
 import os
-import dj_database_url
 
 
 '''preverimo ali app tece lokalno ali na heroku
