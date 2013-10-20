@@ -214,7 +214,7 @@ LOGGING = {
     }
 }
 
-if not LOCAL_ENV_BOOL:
+if LOCAL_ENV_BOOL == False:
     # TODO: UPLOAD NA HEROKU!!!
     # Parse database configuration from $DATABASE_URL
     DATABASES['default'] = dj_database_url.config()
