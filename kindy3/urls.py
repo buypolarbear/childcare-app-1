@@ -1,6 +1,8 @@
 import autocomplete_light
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 admin.autodiscover()
 autocomplete_light.autodiscover()
@@ -31,3 +33,5 @@ urlpatterns = patterns('',
     #website
     url(r'^(?P<childcare_slug>[\w\-]+)/', include('website.urls', namespace="website")),
 )
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
