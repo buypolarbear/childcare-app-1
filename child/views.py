@@ -10,7 +10,7 @@ from child.models import Child
 @login_required
 def child_create(request):
     if request.method == 'POST':
-        form = ChildCreateForm(request.POST)
+        form = ChildCreateForm(request.POST, request.FILES)
         if form.is_valid():
             guardians = form.cleaned_data['guardians']
             obj = form.save(commit=True)
