@@ -28,4 +28,5 @@ urlpatterns = patterns('',
                        url(r'^(?P<childcare_id>\d+)/website/$', views.website_section),
                        url(r'^(?P<childcare_id>\d+)/website/page/create/$', views.website_page_create),
                        url(r'^(?P<childcare_id>\d+)/website/first-page/edit/$', views.website_first_page_edit),
+                       url(r'^(?P<childcare_id>\d+)/website/choose-theme/$', views.website_choose_theme),
                        )

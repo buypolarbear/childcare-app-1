@@ -1,0 +1,18 @@
+{% extends 'childcare/childcare_base.html' %}
+
+{% block title %}Choose a theme{% endblock title %}
+
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/website">Website</a></li>
+    <li>Choose theme</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Choose a theme</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Choose">
+    </form>
+{% endblock content %}

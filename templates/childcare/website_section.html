@@ -19,7 +19,7 @@
     {% if childcare.description == '' %}
         <p><a href="/childcare/{{ childcare.pk }}/website/first-page/edit">Add a description</a></p>
     {% else %}
-        <p>{{ childcare.description }} <a href="/childcare/{{ childcare.pk }}/website/first-page/edit">Edit</a></p>
+        <p>{{ childcare.description }} <a href="/childcare/{{ childcare.pk }}/website/first-page/edit">(edit)</a></p>
     {% endif %}
 
 
@@ -36,5 +36,8 @@
         <li><a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a></li>
     {% endfor %}
     </ul>
+
+    <h2>Theme:</h2>
+    <p>{{ childcare.get_theme_display }} <a href="/childcare/{{ childcare.pk }}/website/choose-theme">(change)</a></p>
 
 {% endblock content %}

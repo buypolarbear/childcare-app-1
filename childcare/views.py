@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required_or_403
 from child.models import Child
 from classroom.models import Classroom
-from .forms import ChildcareCreateForm, NewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsitePageCreateForm, FirstPageForm
+from .forms import ChildcareCreateForm, NewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsitePageCreateForm, FirstPageForm, ChooseThemeForm
 from .models import Childcare, News
 from website.models import EnrolledChildren, Page
 
@@ -173,3 +173,20 @@ def website_first_page_edit(request, childcare_id):
     else:
         form = FirstPageForm(instance=childcare)
     return render(request, 'childcare/first_page_edit.html', {'form': form, 'childcare': childcare})
+
+
+@login_required
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def website_choose_theme(request, childcare_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    if request.method == 'POST':
+        form = ChooseThemeForm(request.POST, instance=childcare)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.theme_image = form.cleaned_data['theme']
+            obj.save
+            form.save(commit=True)
+            return HttpResponseRedirect('/childcare/%s/website' % childcare_id)
+    else:
+        form = ChooseThemeForm(instance=childcare)
+    return render(request, 'childcare/website_choose_theme.html', {'form': form, 'childcare': childcare})

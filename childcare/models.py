@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from django.db import models
 from django.template.defaultfilters import slugify
-from childcare import countries
+from childcare import countries, themes
 from utils.roles import roles_childcare_init_new
 from utils.slugify import unique_slugify
 
@@ -16,9 +16,10 @@ class Childcare(models.Model):
     country = countries.CountryField()
     manager = models.ForeignKey(User, related_name='childcare_manager')
     employees = models.ManyToManyField(User, related_name='childcare_employees', blank=True)
-    theme = models.CharField(max_length=100, blank=True)
-    #email = models.CharField(max_length=100, blank=True)
-    #phone_number = models.CharField(max_length=100, blank=True)
+    theme = themes.ThemeField(default='default')
+    theme_image = models.CharField(max_length=100, blank=True, default='default')
+    email = models.CharField(max_length=100, blank=True)
+    phone_number = models.CharField(max_length=100, blank=True)
     #subscription
     #subscription_expires
 

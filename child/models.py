@@ -6,6 +6,13 @@ from pilkit.processors import ResizeToFill
 from utils.roles import roles_child_init_new
 
 
+GENDER_CHOICES = (
+    ('M', 'male'),
+    ('F', 'female'),
+    ('S', 'startup'),
+)
+
+
 class Child(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -15,7 +22,7 @@ class Child(models.Model):
                                format='JPEG',
                                options={'quality': 60})
     date_of_birth = models.DateField()
-    gender = models.CharField(max_length=1)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     information = models.TextField(blank=True)
     teacher_notes = models.TextField(blank=True)
     guardians = models.ManyToManyField(User)

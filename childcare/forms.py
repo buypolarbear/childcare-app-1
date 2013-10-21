@@ -55,9 +55,6 @@ class EmployeesAddForm(ModelForm):
 
 
 class FirstPageForm(ModelForm):
-    #def __init__(self, *args, **kwargs):
-    #    super(FirstPageForm, self).__init__(*args, **kwargs)
-
     class Meta:
         model = Childcare
         fields = (
@@ -71,3 +68,11 @@ class WebsitePageCreateForm(ModelForm):
         fields = ('title',
                   'content',
                   'order',)
+
+
+class ChooseThemeForm(ModelForm):
+    class Meta:
+        model = Childcare
+        fields = (
+            'theme',
+        )
