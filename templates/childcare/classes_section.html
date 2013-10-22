@@ -6,10 +6,13 @@
     <li>Classrooms</li>
 {% endblock %}
 
-{% block content %}
-    <h1>Classrooms</h1>
+{% block action %}
     <p><a href="/childcare/{{ childcare.pk }}/classroom/create">Add a classroom</a> |
     <a href="/childcare/{{ childcare.pk }}/waiting-list">Waiting list</a></p>
+{% endblock %}
+
+{% block content %}
+    <h1>Classrooms</h1>
     <ul>
     {% for classroom in classroom_list %}
         <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>

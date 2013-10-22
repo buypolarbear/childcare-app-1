@@ -14,6 +14,11 @@
     <li><a>Edit profile</a></li>
 {% endblock %}
 
+{% block action %}
+    <p><a href="/childcare/create/" class="btn btn-default">Create a childcare site</a></p>
+    <p><a href="/children/create/" class="btn btn-default">Add your child</a></p>
+{% endblock %}
+
 {% block content %}
     <h1>Hello{% if user.first_name == '' %} {{ user }}{% else %} {{ user.first_name }} {{ user.last_name }}{% endif %}!</h1>
 
@@ -25,7 +30,7 @@
         {% endfor %}
         </ul>
     {% endif %}
-    <p><a href="/childcare/create/" class="btn btn-default">Create a childcare site</a></p>
+
 
     {% if children_list %}
         <p>Your children:</p>
@@ -35,6 +40,4 @@
         {% endfor %}
         </ul>
     {% endif %}
-    <p><a href="/children/create/" class="btn btn-default">Add your child</a></p>
-    <p><a href="/accounts/logout">Logout</a></p>
 {% endblock %}
