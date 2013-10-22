@@ -4,3 +4,4 @@ staticfiles
 staticfiles/*
 .idea
 *.db
+kindy3/media/*

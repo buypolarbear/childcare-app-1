@@ -17,10 +17,6 @@ class Child(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='child/images/', blank=True)
-    thumbnail = ImageSpecField(source='image',
-                               processors=[ResizeToFill(100, 100)],
-                               format='JPEG',
-                               options={'quality': 60})
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     information = models.TextField(blank=True)
@@ -47,6 +43,12 @@ class Child(models.Model):
         super(Child, self).save(*args, **kwargs)
         if is_create:
             roles_child_init_new(self)
+
+    def get_image(self):
+        try:
+            return self.image
+        except IOError:
+            return None
 
     def get_absolute_url(self):
         return reverse('child.views.child', args=[self.pk])

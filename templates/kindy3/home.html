@@ -10,13 +10,10 @@
     {{ user.first_name }} {{ user.last_name }}
 {% endblock %}
 
-{% block sidebar %}
-    <li><a>Edit profile</a></li>
-{% endblock %}
-
 {% block action %}
     <li><a href="/childcare/create/">Create a childcare site</a></li>
     <li><a href="/children/create/">Add your child</a></li>
+    <li><a>Edit profile</a></li>
 {% endblock %}
 
 {% block content %}
