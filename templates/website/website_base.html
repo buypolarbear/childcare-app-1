@@ -2,28 +2,25 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>{% block title %}Tagging Exploration{% endblock %}</title>
+		<title>{% block title %}{% endblock %}</title>
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/website.css">
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes/{{ childcare.theme }}.css">
 	</head>
 	<body>
-		<div class="container wrapper">
-			<a href="/{{ childcare.slug }}/"><img src="{{ STATIC_URL }}images/themes/{{ childcare.theme_image }}.jpg" alt="{{ childcare }}"></a>
+		<div class="container">
+			<h1 class="title"><a href="/{{ childcare.slug }}/">{{ childcare }}</a></h1>
+			<div id="nav">
+				<ul>
+					<li><a href="#">Page</a></li>
+					<li><a href="#">Page</a></li>
+					<li><a href="#">Page</a></li>
+					<li><a href="#">Page</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
 			<div id="content">
 			{% block content %}{% endblock %}
-			{% block main_content %}{% endblock %}
-			</div>
-			<div class="nav text-center">
-				<p>
-				{% block sidebar %}
-				{% for page in pages_list %}
-				<a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a> |
-				{% endfor %}
-				<a href="/{{ childcare.slug }}/news">News</a> |
-				<a href="/{{ childcare.slug }}/enroll">Enroll your child</a>
-				{% endblock %}
-				</p>
 			</div>
 		</div>
 	</body>
