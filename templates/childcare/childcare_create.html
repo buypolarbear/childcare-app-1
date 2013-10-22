@@ -12,9 +12,16 @@
 
 {% block content %}
     <h1>Create a childcare site</h1>
-    <form method="post">
+    <form method="post" class="form-horizontal">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create">
+        {% for field in form %}
+        <div class="form-group">
+        	{{ field.label_tag }}
+        	<div class="col-md-3">
+        		{{ field }}
+        	</div>
+    	</div>
+        {% endfor %}
+        <input type="submit" class="btn btn-default" value="Create">
     </form>
 {% endblock content %}
