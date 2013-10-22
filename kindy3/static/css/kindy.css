@@ -64,4 +64,28 @@ ul.sidebar li a.active {
 
 /* CONTENT */
 .content { padding:10px 30px; }
+
+.content ul.action-nav {
+	border-bottom:1px #c9cbd1 solid;
+	list-style:none;
+	padding:0;
+}
+
+.content ul.action-nav li {
+	display:inline-block;
+}
+
+.content ul.action-nav li a {
+	color:#838998;
+	display:block;
+	padding:10px;
+	text-decoration:none;
+}
+
+.content ul.action-nav li a:hover,
+.content ul.action-nav li a.active {
+	border-bottom:2px #f75555 solid;
+	color:#231f20;
+	padding-bottom:8px;
+}
 /* END CONTENT */
