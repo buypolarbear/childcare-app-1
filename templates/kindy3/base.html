@@ -12,14 +12,14 @@
 				<div class="navbar-header">
 					<a href="/" class="logo"><img src="{{ STATIC_URL }}img/logo.png" alt="Kindy"></a>
 				</div>
-			{% if user.is_authenticated %}
-				<p class="navbar-text pull-right">
+				<p class="navbar-text navbar-right">
+				{% if user.is_authenticated %}
 					<span class="glyphicon glyphicon-user"></span> <a href="/home/">{% if user.first_name == '' %}{{ user }}{% else %}{{ user.first_name }} {{ user.last_name }}{% endif %}</a> |
 					<span class="glyphicon glyphicon-log-out"></span> <a href="/accounts/logout/">Logout</a>
+				{% else %}
+					<span class="glyphicon glyphicon-log-in"></span> <a href="/accounts/login/">Login</a>
+				{% endif %}
 				</p>
-			{% else %}
-				<p class="navbar-text pull-right"><a href="/accounts/login/">Login</a></p>
-			{% endif %}
 			</div>
 		</div>
 		<div class="navbar navbar-default navbar-static-top sub-nav">
