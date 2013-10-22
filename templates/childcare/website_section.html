@@ -7,13 +7,18 @@
     <li>Website</li>
 {% endblock %}
 
-{% block content %}
-    <h1>Website</h1>
+{% block action %}
     <p>
         <a href="/{{ childcare.slug }}">Go to website</a> |
         <a href="/childcare/{{ childcare.pk }}/news/create">Add news</a> |
-        <a href="/childcare/{{ childcare.pk }}/website/page/create">Add page</a>
+        <a href="/childcare/{{ childcare.pk }}/website/page/create">Add page</a> |
+        <a href="/childcare/{{ childcare.pk }}/website/choose-theme">Choose theme</a>
     </p>
+{% endblock %}
+
+{% block content %}
+    <h1>Website</h1>
+
 
     <h2>First Page (child care description):</h2>
     {% if childcare.description == '' %}

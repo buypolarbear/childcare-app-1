@@ -6,9 +6,12 @@
     <li>Employees</li>
 {% endblock %}
 
+{% block action %}
+    <a href="/childcare/{{ childcare.pk }}/employees/add">Add/Remove employees</a>
+{% endblock %}
+
 {% block content %}
     <h1>Employees</h1>
-    <p><a href="/childcare/{{ childcare.pk }}/employees/add">Add/Remove employees</a>
     <ul>
     {% for employee in childcare.employees.all %}
         <li>{{ employee.first_name }} {{ employee.last_name }} ({{ employee }})</li>

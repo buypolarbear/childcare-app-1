@@ -6,9 +6,12 @@
     <li>Newsboard</li>
 {% endblock %}
 
+{% block action %}
+    <a href="/childcare/{{ childcare.pk }}/news/create">Add news</a>
+{% endblock %}
+
 {% block content %}
     <h1>Newsboard</h1>
-    <p><a href="/childcare/{{ childcare.pk }}/news/create">Add news</a></p>
     <ul>
     {% for news in news_list %}
         <li><a href="/childcare/{{ childcare.pk }}/news/{{ news.pk }}">{{ news }}</a></li>
