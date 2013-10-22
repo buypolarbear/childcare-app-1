@@ -1,6 +1,9 @@
 {% extends 'classroom/classroom_base.html' %}
 {% block title %}{{ classroom }}{% endblock title %}
 
+{% block action_header %}
+{% endblock action_header %}
+
 {% block content %}
     <h1>{{ classroom }}</h1>
     <p>{{ classroom.description|linebreaks }}</p>

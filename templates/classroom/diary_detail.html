@@ -7,6 +7,9 @@
     <li>{{ diary.created.day }} {{ diary.created|date:'M' }} {{ diary.created.year }}</li>
 {% endblock %}
 
+{% block action_header %}
+{% endblock action_header %}
+
 {% block content %}
     <h1>A diary for {{ diary.created.day }} {{ diary.created|date:'M' }} {{ diary.created.year }}</h1>
     <p>{{ diary.content|linebreaks }}</p>

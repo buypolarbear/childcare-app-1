@@ -6,6 +6,9 @@
     <li>{{ childcare.name }}</li>
 {% endblock %}
 
+{% block action_header %}
+{% endblock action_header %}
+
 {% block content %}
     <h1>{{ childcare.name }}</h1>
     <p>Manager: {{ childcare.manager.first_name }} {{ childcare.manager.last_name }} ({{ childcare.manager }})</p>

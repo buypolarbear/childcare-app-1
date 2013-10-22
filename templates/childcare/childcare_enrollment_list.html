@@ -8,6 +8,9 @@
     <li>Waiting list</li>
 {% endblock %}
 
+{% block action_header %}
+{% endblock action_header %}
+
 {% block content %}
     <h1>Waiting list for {{ childcare.name }}</h1>
     {% if enrollment_list %}

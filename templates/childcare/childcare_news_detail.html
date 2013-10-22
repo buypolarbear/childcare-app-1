@@ -8,6 +8,9 @@
     <li>News</li>
 {% endblock %}
 
+{% block action_header %}
+{% endblock action_header %}
+
 {% block content %}
     <h1>{{ news }}</h1>
     <p>{{ news.content|linebreaks }}</p>
