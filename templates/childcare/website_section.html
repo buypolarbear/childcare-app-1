@@ -8,12 +8,10 @@
 {% endblock %}
 
 {% block action %}
-    <p>
-        <a href="/{{ childcare.slug }}">Go to website</a> |
-        <a href="/childcare/{{ childcare.pk }}/news/create">Add news</a> |
-        <a href="/childcare/{{ childcare.pk }}/website/page/create">Add page</a> |
-        <a href="/childcare/{{ childcare.pk }}/website/choose-theme">Choose theme</a>
-    </p>
+    <li><a href="/{{ childcare.slug }}/">Go to website</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/news/create/">Add news</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/website/page/create/">Add page</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/website/choose-theme/">Choose theme</a></li>
 {% endblock %}
 
 {% block content %}
