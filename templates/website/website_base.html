@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container wrapper">
-			<a href="/{{ childcare.slug }}/"><img src="{{ STATIC_URL }}tmp/yc.gif" alt="{{ childcare }}"></a>
+			<a href="/{{ childcare.slug }}/"><img src="{{ STATIC_URL }}images/themes/{{ childcare.theme_image }}.jpg" alt="{{ childcare }}"></a>
 			<div id="content">
 			{% block content %}{% endblock %}
 			{% block main_content %}{% endblock %}
