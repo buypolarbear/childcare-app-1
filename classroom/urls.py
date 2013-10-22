@@ -9,4 +9,5 @@ urlpatterns = patterns('',
                        # diary
                        url(r'^classroom/(?P<classroom_id>\d+)/diary/$', views.diary_section),
                        url(r'^classroom/(?P<classroom_id>\d+)/diary/create/$', views.diary_create),
+                       url(r'^classroom/(?P<classroom_id>\d+)/diary/(?P<diary_id>\d+)/$', views.diary_detail),
                        )

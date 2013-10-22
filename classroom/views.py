@@ -78,3 +78,14 @@ def diary_section(request, childcare_id, classroom_id):
     return render(request, 'classroom/diary_section.html', {'classroom': classroom,
                                                             'childcare': childcare,
                                                             'diary_list': diary_list})
+
+
+@login_required
+@permission_required_or_403('childcare_view', (Childcare, 'pk', 'childcare_id'))
+def diary_detail(request, childcare_id, classroom_id , diary_id):
+    childcare = get_object_or_404(Childcare, pk=childcare_id)
+    classroom = get_object_or_404(Classroom, pk=classroom_id)
+    diary = get_object_or_404(Diary, pk=diary_id, classroom=classroom)
+    return render(request, 'classroom/diary_detail.html', {'classroom': classroom,
+                                                                    'childcare': childcare,
+                                                                    'diary': diary})
