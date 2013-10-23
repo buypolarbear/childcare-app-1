@@ -12,10 +12,9 @@
 			<h1 class="title"><a href="/{{ childcare.slug }}/">{{ childcare }}</a></h1>
 			<div id="nav">
 				<ul>
-					<li><a href="#">Page</a></li>
-					<li><a href="#">Page</a></li>
-					<li><a href="#">Page</a></li>
-					<li><a href="#">Page</a></li>
+                    {% for page in pages_list %}
+					    <li><a href="/{{ childcare.slug }}/{{ page.slug }}">{{ page }}</a></li>
+                    {% endfor %}
 				</ul>
 			</div>
 			<div class="clearfix"></div>
