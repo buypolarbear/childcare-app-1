@@ -172,14 +172,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'south',
+    'registration',
+    'guardian',
     #'imagekit',
     #'sorl.thumbnail',
     #'easy_thumbnails',
     'childcare',
     'child',
-    'guardian',
     'autocomplete_light',
-    'registration',
     'website',
     'classroom',
 )
