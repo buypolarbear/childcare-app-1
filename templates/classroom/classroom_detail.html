@@ -6,5 +6,12 @@
 
 {% block content %}
     <h1>{{ classroom }}</h1>
+    <h3>Description</h3>
     <p>{{ classroom.description|linebreaks }}</p>
+    <h3>Teachers</h3>
+    <ul>
+    {% for teacher in classroom.teachers.all %}
+        <li>{{ teacher }}</li>
+    {% endfor %}
+    </ul>
 {% endblock content %}
