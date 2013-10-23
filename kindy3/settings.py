@@ -47,11 +47,11 @@ else:
     DATABASES = {
         'default': {
              'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-             'NAME': 'db7b02iefjhfvl',                      # Or path to database file if using sqlite3.
+             'NAME': 'd77qe1dn0p9jo4',                      # Or path to database file if using sqlite3.
              # The following settings are not used with sqlite3:
-             'USER': 'latdjrswgqbgbu',
-             'PASSWORD': 'C-F3pRlWaGk9JdXzJYWQA3vzRv',
-             'HOST': 'ec2-54-235-92-161.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+             'USER': 'zgalroguvgegha',
+             'PASSWORD': 'AlaeiUYnyEWxEdMAvaeCO9bfYD',
+             'HOST': 'ec2-107-22-186-169.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
              'PORT': '5432',                      # Set to empty string for default.
         },
     }
