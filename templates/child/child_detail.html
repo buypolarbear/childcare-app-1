@@ -1,5 +1,6 @@
 {% extends 'kindy3/base.html' %}
 {% load guardian_tags %}
+{% load imagekit %}
 
 {% block sidebar-title %}
 	<a href="/children/{{ child.pk }}/">{{ child }}</a>
@@ -19,7 +20,7 @@
     <h1>{{ child }}</h1>
 
     {% if child.get_image %}
-        <img src="{{ child.image.url }}">
+        {% generateimage 'child:thumbnail' source=child.image %}
     {% endif %}
 
     <p>Guardians:</p>
