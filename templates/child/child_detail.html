@@ -2,11 +2,11 @@
 {% load guardian_tags %}
 
 {% block sidebar-title %}
-	<a href="/children/{{ child.pk }}">{{ child }}</a>
+	<a href="/children/{{ child.pk }}/">{{ child }}</a>
 {% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="/home">Home</a></li>
+    <li><a href="/home/">Home</a></li>
     <li>{{ child }}</li>
 {% endblock %}
 

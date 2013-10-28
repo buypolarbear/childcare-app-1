@@ -24,7 +24,7 @@ def childcare_create(request):
             manager = request.user
             group = Group.objects.get(name='%s: Manager' % childcare.slug)
             manager.groups.add(group)
-            return HttpResponseRedirect('/home')
+            return HttpResponseRedirect('/home/')
     else:
         form = ChildcareCreateForm()
     return render(request, 'childcare/childcare_create.html', {'form': form})
@@ -53,7 +53,7 @@ def childcare_news_create(request, childcare_id):
             obj.childcare = childcare
             obj.save()
             form.save(commit=True)
-            return HttpResponseRedirect('/childcare/%s' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/newsboard/' % childcare_id)
     else:
         form = NewsCreateForm()
     return render(request, 'childcare/childcare_news_create.html', {'form': form, 'childcare': childcare})
@@ -88,7 +88,7 @@ def child_enrollment_application(request, childcare_id, child_id):
         form = EnrollmentApplicationForm(childcare, request.POST, instance=application)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/childcare/%s/waiting-list' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/waiting-list/' % childcare_id)
     else:
         form = EnrollmentApplicationForm(childcare, instance=application)
     return render(request,
@@ -120,7 +120,7 @@ def employees_add(request, childcare_id):
         form = EmployeesAddForm(request.POST, instance=childcare)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/childcare/%s/employees' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/employees/' % childcare_id)
     else:
         form = EmployeesAddForm(instance=childcare)
     return render(request, 'childcare/employees_add.html', {'form': form, 'childcare': childcare})
@@ -155,7 +155,7 @@ def website_page_create(request, childcare_id):
             obj.childcare = childcare
             obj.save
             form.save(commit=True)
-            return HttpResponseRedirect('/childcare/%s/website' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/website/' % childcare_id)
     else:
         form = WebsitePageCreateForm()
     return render(request, 'childcare/website_page_create.html', {'form': form, 'childcare': childcare})
@@ -169,7 +169,7 @@ def website_first_page_edit(request, childcare_id):
         form = FirstPageForm(request.POST, instance=childcare)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/childcare/%s/website' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/website/' % childcare_id)
     else:
         form = FirstPageForm(instance=childcare)
     return render(request, 'childcare/first_page_edit.html', {'form': form, 'childcare': childcare})
@@ -186,7 +186,7 @@ def website_choose_theme(request, childcare_id):
             obj.theme_image = form.cleaned_data['theme']
             obj.save
             form.save(commit=True)
-            return HttpResponseRedirect('/childcare/%s/website' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/website/' % childcare_id)
     else:
         form = ChooseThemeForm(instance=childcare)
     return render(request, 'childcare/website_choose_theme.html', {'form': form, 'childcare': childcare})

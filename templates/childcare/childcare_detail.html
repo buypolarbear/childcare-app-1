@@ -18,7 +18,7 @@
         <p>Childcare news:</p>
         <ul>
         {% for news in news_list %}
-            <li><a href="news/{{ news.pk }}">{{ news }}</a></li>
+            <li><a href="news/{{ news.pk }}/">{{ news }}</a></li>
         {% endfor %}
         </ul>
     {% endif %}
@@ -27,7 +27,7 @@
         <p>Classrooms:</p>
         <ul>
         {% for classroom in classroom_list %}
-            <li><a href="classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+            <li><a href="classroom/{{ classroom.pk }}/">{{ classroom }}</a></li>
         {% endfor %}
         </ul>
     {% endif %}

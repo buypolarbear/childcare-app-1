@@ -53,7 +53,7 @@ def enroll_child(request, childcare_slug):
                 obj.childcare = childcare
                 obj.save()
                 form.save(commit=True)
-                return HttpResponseRedirect('/%s/enrollment-sent' % childcare_slug)
+                return HttpResponseRedirect('/%s/enrollment-sent/' % childcare_slug)
             except:
                 return HttpResponse("The enrollment application for your child has already been sent.")
     else:

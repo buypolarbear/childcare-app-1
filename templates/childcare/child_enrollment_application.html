@@ -3,9 +3,9 @@
 {% block title %}{{ application.child }} application{% endblock title %}
 
 {% block breadcrumb %}
-    <li><a href="/childcare/{{ childcare.pk }}">{{ childcare }}</a></li>
-    <li><a href="/childcare/{{ childcare.pk }}/classrooms">Classrooms</a></li>
-    <li><a href="/childcare/{{ childcare.pk }}/classrooms/waiting-list">Waiting list</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/">{{ childcare }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classrooms/">Classrooms</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classrooms/waiting-list/">Waiting list</a></li>
     <li>{{ application.child }}</li>
 {% endblock %}
 

@@ -23,7 +23,7 @@ def classroom_create(request, childcare_id):
             form.save(commit=True)
             for teacher in teachers:
                 assign_perm('classroom_view', teacher, childcare)
-            return HttpResponseRedirect('/childcare/%s' % childcare_id)
+            return HttpResponseRedirect('/childcare/%s/classrooms/' % childcare_id)
     else:
         form = ClassroomCreateForm()
     return render(request, 'classroom/classroom_create.html', {'form': form, 'childcare': childcare})
@@ -61,7 +61,7 @@ def diary_create(request, childcare_id, classroom_id):
             obj.author = request.user
             obj.save()
             form.save(commit=True)
-            return HttpResponseRedirect('/childcare/%s/classroom/%s/diary' % (childcare_id, classroom_id))
+            return HttpResponseRedirect('/childcare/%s/classroom/%s/diary/' % (childcare_id, classroom_id))
     else:
         form = DiaryCreateForm()
     return render(request, 'classroom/diary_create.html', {'form': form,
