@@ -1,6 +1,8 @@
 {% extends 'kindy3/base.html' %}
 {% load guardian_tags %}
 
+{% block body-class %}classroom{% endblock %}
+
 {% block sidebar-title %}
 	<a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">Classroom dashboard</a>
 {% endblock %}

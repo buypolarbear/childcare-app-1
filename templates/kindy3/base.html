@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/kindy.css">
 	</head>
-	<body>
+	<body class="{% block body-class %}{% endblock %}">
 		<div class="navbar navbar-default navbar-static-top main-nav">
 			<div class="container">
 				<div class="navbar-header">

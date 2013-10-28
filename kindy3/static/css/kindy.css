@@ -30,6 +30,9 @@ body {
 
 .sub-nav .home { background:#1db9a4; }
 
+.classroom .sub-nav { background:#f1c40f; }
+.classroom .sub-nav .home { background:#f49c14; }
+
 .sub-nav .home p {
 	background:url(/static/img/icon-home.png) no-repeat left center;
 	padding-left:40px;
