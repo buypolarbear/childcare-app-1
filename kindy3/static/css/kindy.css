@@ -43,6 +43,8 @@ body {
 	background:none;
 	margin:7px 0;
 }
+
+.sub-nav .breadcrumb > li + li:before { color:#eee; }
 /* END BOOTSTRAP MODIFICATIONS */
 
 /* NAVIGATION */
