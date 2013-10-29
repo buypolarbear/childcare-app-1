@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'autocomplete_light',
     'website',
     'classroom',
+    'widget_tweaks'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
