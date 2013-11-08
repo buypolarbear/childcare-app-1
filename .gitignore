@@ -4,4 +4,12 @@ staticfiles
 staticfiles/*
 .idea
 *.db
-kindy3/media/*
+kindy3/media/images/child/*
+kindy3/media/images/childcare/*
+kindy3/media/images/logos/*
+kindy3/media/images/news/*
+kindy3/media/files/news/*
+kindy3/media/files/child/*
+kindy3/media/files/page/*
+kindy3/media/files/plan/*
+run.sh

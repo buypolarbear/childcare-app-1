@@ -14,7 +14,7 @@
     <h1>Daily diary</h1>
     <ul>
     {% for diary in diary_list %}
-        <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary/{{ diary.pk }}">{{ diary.created.day }} {{ diary.created|date:'M' }} {{ diary.created.year }}</a></li>
+        <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary/{{ diary.pk }}">{{ diary.date.day }} {{ diary.date|date:'M' }} {{ diary.date.year }}</a></li>
     {% endfor %}
     </ul>
 {% endblock content %}

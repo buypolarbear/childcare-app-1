@@ -1,7 +1,7 @@
 from django.forms import ModelForm, ModelChoiceField, ModelMultipleChoiceField
 from classroom.models import Classroom
 from .models import Childcare, News
-from website.models import EnrolledChildren, Page
+from website.models import EnrolledChild, Page
 from django.contrib.auth.models import User
 import autocomplete_light
 from utils import autocomplete_light_registry
@@ -33,7 +33,7 @@ class EnrollmentApplicationForm(ModelForm):
         self.fields['classroom'] = ModelChoiceField(queryset=Classroom.objects.filter(childcare=self._childcare_id))
 
     class Meta:
-        model = EnrolledChildren
+        model = EnrolledChild
         fields = (
             'classroom',
             'approved',

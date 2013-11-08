@@ -1,19 +1,27 @@
 from django.contrib.auth.models import User, Group
 from django.db import models
 from django.template.defaultfilters import slugify
-from childcare import countries, themes
+from childcare import countries, themes, subscriptions
 from utils.roles import roles_childcare_init_new
 from utils.slugify import unique_slugify
+from datetime import datetime, timedelta
+from child.imagegenerators import GalleryThumbnail
+from localflavor.us import models as usmodels
+
+
+def one_month_trial():
+    return datetime.now() + timedelta(days=30)
 
 
 class Childcare(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(verbose_name='URL: kindy.at/', unique=True, max_length=100)
-    logo = models.ImageField(upload_to='logos/', blank=True)
+    logo = models.ImageField(upload_to='images/logos/', blank=True)
     slogan = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True)
     street_address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+    state = usmodels.USStateField(blank=True)
     country = countries.CountryField()
     manager = models.ForeignKey(User, related_name='childcare_manager')
     employees = models.ManyToManyField(User, related_name='childcare_employees', blank=True)
@@ -21,8 +29,9 @@ class Childcare(models.Model):
     theme_image = models.CharField(max_length=100, blank=True, default='default')
     email = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=100, blank=True)
-    #subscription
-    #subscription_expires
+    subscription = subscriptions.SubscriptionField(default='trial')
+    subscription_expires = models.DateTimeField(default=one_month_trial())
+    disabled = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
@@ -64,25 +73,6 @@ class GroupChildcare(models.Model):
         unique_together = ['childcare', 'group']
 
 
-'''
-class ChildcareNews(models.Model):
-    title = models.CharField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User)
-    content = models.TextField()
-    childcare = models.ForeignKey(Childcare)
-    #images
-    #documents/files
-
-    def __unicode__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return '/childcare/%s/news/%s' % (self.childcare.pk, self.pk)
-'''
-
-
 class News(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
@@ -92,8 +82,6 @@ class News(models.Model):
     content = models.TextField()
     childcare = models.ForeignKey(Childcare)
     public = models.BooleanField(default=False)
-    #images
-    #documents/files
 
     def __unicode__(self):
         return self.title
@@ -106,14 +94,53 @@ class News(models.Model):
             self.slug = slugify(self.title)
             super(News, self).save(*args, **kwargs)
 
+
+class NewsImage(models.Model):
+    image = models.ImageField(upload_to='images/news/', blank=True)
+    news = models.ForeignKey(News)
+    thumbnail = GalleryThumbnail(source='image')
+
+
+class NewsFile(models.Model):
+    file = models.FileField(upload_to='files/news/')
+    description = models.CharField(max_length=500, blank=True)
+    uploader = models.ForeignKey(User)
+    news = models.ForeignKey(News)
+
+
 '''
-class NewsComments(models.Model):
+class NewsComment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User)
     content = models.TextField()
     news = models.ForeignKey(News)
-
-    def __unicode__(self):
-        return self.content
 '''
+
+
+class Task(models.Model):
+    childcare = models.ForeignKey(Childcare)
+    content = models.TextField()
+    due = models.DateTimeField(blank=True)
+    done = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+
+class Meal(models.Model):
+    content = models.TextField()
+    date = models.DateField()
+    childcare = models.ForeignKey(Childcare)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+
+class Event(models.Model):
+    childcare = models.ForeignKey(Childcare)
+    author = models.ForeignKey(User)
+    title = models.CharField(max_length=400)
+    date = models.DateTimeField()
+    description = models.TextField(blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)

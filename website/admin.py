@@ -1,5 +1,5 @@
 from django.contrib import admin
-from website.models import EnrolledChildren, Page
+from website.models import EnrolledChild, Page
 
 admin.site.register(Page)
-admin.site.register(EnrolledChildren)
+admin.site.register(EnrolledChild)

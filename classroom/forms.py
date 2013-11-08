@@ -1,9 +1,12 @@
 import autocomplete_light
+import datetime
 from django.forms.extras.widgets import SelectDateWidget
+from child.models import Child
 from classroom.models import Classroom, Diary
 from utils import autocomplete_light_registry
 from django.contrib.auth.models import User
-from django.forms import ModelForm, ModelMultipleChoiceField, DateField
+from django.forms import ModelForm, ModelMultipleChoiceField, DateField, CheckboxSelectMultiple
+from website.models import EnrolledChild
 
 
 class ClassroomCreateForm(ModelForm):
@@ -22,11 +25,22 @@ class ClassroomCreateForm(ModelForm):
 
 
 class DiaryCreateForm(ModelForm):
-    created = DateField(widget=SelectDateWidget, label='Date')
+    def __init__(self, classroom=None, *args, **kwargs):
+        super(DiaryCreateForm, self).__init__(*args, **kwargs)
+        enrolled = EnrolledChild.objects.filter(classroom=classroom, approved=True)
+        children_ids = []
+        for object in enrolled:
+            children_ids.append(object.child.pk)
+        self.fields['attendance'] = ModelMultipleChoiceField(queryset=Child.objects.filter(id__in=children_ids),
+                                                             widget=CheckboxSelectMultiple(attrs={"checked":""}),
+                                                             required=True)
+
+    date = DateField(widget=SelectDateWidget, initial=datetime.date.today)
 
     class Meta:
         model = Diary
         fields = (
-            'created',
+            'date',
             'content',
+            'attendance',
         )

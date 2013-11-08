@@ -7,7 +7,7 @@ from child.models import Child
 from classroom.models import Classroom
 from .forms import ChildcareCreateForm, NewsCreateForm, EnrollmentApplicationForm, EmployeesAddForm, WebsitePageCreateForm, FirstPageForm, ChooseThemeForm
 from .models import Childcare, News
-from website.models import EnrolledChildren, Page
+from website.models import EnrolledChild, Page
 
 
 @login_required
@@ -72,7 +72,7 @@ def childcare_news_detail(request, childcare_id, news_id):
 def children_enrollment_list(request, childcare_id):
     #waiting list
     childcare = get_object_or_404(Childcare, pk=childcare_id)
-    enrollment_list = EnrolledChildren.objects.filter(childcare=childcare, approved=False)
+    enrollment_list = EnrolledChild.objects.filter(childcare=childcare, approved=False)
     return render(request,
                   'childcare/childcare_enrollment_list.html',
                   {'childcare': childcare, 'enrollment_list': enrollment_list})
@@ -83,7 +83,7 @@ def children_enrollment_list(request, childcare_id):
 def child_enrollment_application(request, childcare_id, child_id):
     childcare = get_object_or_404(Childcare, pk=childcare_id)
     child = get_object_or_404(Child, pk=child_id)
-    application = get_object_or_404(EnrolledChildren, child=child, childcare=childcare_id)
+    application = get_object_or_404(EnrolledChild, child=child, childcare=childcare_id)
     if request.method == 'POST':
         form = EnrollmentApplicationForm(childcare, request.POST, instance=application)
         if form.is_valid():

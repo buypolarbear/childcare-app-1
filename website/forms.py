@@ -1,6 +1,6 @@
 from django.forms import ModelForm, ModelChoiceField
 from child.models import Child
-from website.models import EnrolledChildren
+from website.models import EnrolledChild
 
 
 class EnrollChildForm(ModelForm):
@@ -10,7 +10,7 @@ class EnrollChildForm(ModelForm):
         self.fields['child'] = ModelChoiceField(queryset=Child.objects.filter(guardians__id=self._user.pk))
 
     class Meta:
-        model = EnrolledChildren
+        model = EnrolledChild
         fields = (
             'child',
         )

@@ -1,0 +1,7 @@
+venv
+*.pyc
+staticfiles
+staticfiles/*
+.idea
+*.db
+kindy3/media/*

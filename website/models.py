@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from child.models import Child
@@ -13,8 +14,6 @@ class Page(models.Model):
     content = models.TextField()
     childcare = models.ForeignKey(Childcare)
     order = models.SmallIntegerField(default=1)
-    #TODO:images
-    #TODO:files
 
     def __unicode__(self):
         return self.title
@@ -28,7 +27,15 @@ class Page(models.Model):
             super(Page, self).save(*args, **kwargs)
 
 
-class EnrolledChildren(models.Model):
+class PageFile(models.Model):
+    file = models.FileField(upload_to='files/page/')
+    description = models.CharField(max_length=500, blank=True)
+    uploader = models.ForeignKey(User)
+    page = models.ForeignKey(Page)
+    created = models.DateTimeField(auto_now_add=True)
+
+
+class EnrolledChild(models.Model):
     child = models.ForeignKey(Child)
     childcare = models.ForeignKey(Childcare)
     classroom = models.ForeignKey(Classroom, null=True)
@@ -39,30 +46,5 @@ class EnrolledChildren(models.Model):
     class Meta:
         unique_together = ['child', 'childcare']
 
-
-'''
-class WebsiteNews(models.Model):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User)
-    content = models.TextField()
-    childcare = models.ForeignKey(Childcare)
-    #TODO:images
-    #TODO:files
-
     def __unicode__(self):
-        return self.title
-
-    class Meta:
-        ordering = ['-created']
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-            super(WebsiteNews, self).save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse('website.views.news_detail', args=[self.slug])
-'''
+        return self.child

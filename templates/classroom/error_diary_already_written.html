@@ -4,19 +4,12 @@
 {% block breadcrumb %}
     <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
     <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/diary">Daily diary</a></li>
-    <li>{{ diary.date.day }} {{ diary.date|date:'M' }} {{ diary.date.year }}</li>
 {% endblock %}
 
 {% block action_header %}
 {% endblock action_header %}
 
 {% block content %}
-    <h1>A diary for {{ diary.date.day }} {{ diary.date|date:'M' }} {{ diary.date.year }}</h1>
-    <p>{{ diary.content|linebreaks }}</p>
-    <p>Present children:</p>
-    <ul>
-    {% for child in diary.attendance.all %}
-        <li>{{ child }}</li>
-    {% endfor %}
-    </ul>
+<h1>Ooops!</h1>
+<p>A diary for the selected day has already been written.</p>
 {% endblock content %}

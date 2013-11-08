@@ -32,7 +32,7 @@ if LOCAL_ENV_BOOL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'database7.db',  # Or path to database file if using sqlite3.
+            'NAME': 'database.db',  # Or path to database file if using sqlite3.
             # The following settings are not used with sqlite3:
             'USER': '',
             'PASSWORD': '',
@@ -163,7 +163,8 @@ INSTALLED_APPS = (
     'autocomplete_light',
     'website',
     'classroom',
-    'widget_tweaks'
+    'widget_tweaks',
+    'localflavor',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
