@@ -2,7 +2,7 @@ import autocomplete_light
 import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from child.models import Child
-from classroom.models import Classroom, Diary
+from classroom.models import Classroom, Diary, Attendance
 from utils import autocomplete_light_registry
 from django.contrib.auth.models import User
 from django.forms import ModelForm, ModelMultipleChoiceField, DateField, CheckboxSelectMultiple
@@ -25,8 +25,19 @@ class ClassroomCreateForm(ModelForm):
 
 
 class DiaryCreateForm(ModelForm):
+    date = DateField(widget=SelectDateWidget, initial=datetime.date.today)
+
+    class Meta:
+        model = Diary
+        fields = (
+            'date',
+            'content',
+        )
+
+
+class AttendanceCreateForm(ModelForm):
     def __init__(self, classroom=None, *args, **kwargs):
-        super(DiaryCreateForm, self).__init__(*args, **kwargs)
+        super(AttendanceCreateForm, self).__init__(*args, **kwargs)
         enrolled = EnrolledChild.objects.filter(classroom=classroom, approved=True)
         children_ids = []
         for object in enrolled:
@@ -38,9 +49,8 @@ class DiaryCreateForm(ModelForm):
     date = DateField(widget=SelectDateWidget, initial=datetime.date.today)
 
     class Meta:
-        model = Diary
+        model = Attendance
         fields = (
             'date',
-            'content',
             'attendance',
         )

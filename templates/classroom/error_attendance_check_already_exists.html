@@ -1,0 +1,15 @@
+{% extends 'classroom/classroom_base.html' %}
+{% block title %}{{ classroom }} | Daily diary{% endblock title %}
+
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/attendance">Attendance</a></li>
+{% endblock %}
+
+{% block action_header %}
+{% endblock action_header %}
+
+{% block content %}
+<h1>Ooops!</h1>
+<p>Attendance check for this date already exists. Find it in the Attendance archive.</p>
+{% endblock content %}

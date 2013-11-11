@@ -21,6 +21,18 @@ class Classroom(models.Model):
         return 'childcare/%s/classroom/%s' % (self.childcare.pk, self.pk)
 
 
+class Attendance(models.Model):
+    author = models.ForeignKey(User)
+    date = models.DateField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    classroom = models.ForeignKey(Classroom)
+    attendance = models.ManyToManyField(Child)
+
+    class Meta:
+        unique_together = ['classroom', 'date']
+
+
 class Diary(models.Model):
     author = models.ForeignKey(User)
     date = models.DateField(blank=True)
@@ -28,7 +40,6 @@ class Diary(models.Model):
     modified = models.DateTimeField(auto_now=True)
     classroom = models.ForeignKey(Classroom)
     content = models.TextField()
-    attendance = models.ManyToManyField(Child)
 
     class Meta:
         unique_together = ['classroom', 'date']

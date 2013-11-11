@@ -10,4 +10,9 @@ urlpatterns = patterns('',
                        url(r'^classroom/(?P<classroom_id>\d+)/diary/$', views.diary_section),
                        url(r'^classroom/(?P<classroom_id>\d+)/diary/create/$', views.diary_create),
                        url(r'^classroom/(?P<classroom_id>\d+)/diary/(?P<diary_id>\d+)/$', views.diary_detail),
+
+                       # attendance
+                       url(r'^classroom/(?P<classroom_id>\d+)/attendance/$', views.attendance_section),
+                       url(r'^classroom/(?P<classroom_id>\d+)/attendance/check/$', views.attendance_check),
+                       url(r'^classroom/(?P<classroom_id>\d+)/attendance/(?P<attendance_id>\d+)/$', views.attendance_detail),
                        )

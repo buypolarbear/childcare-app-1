@@ -32,7 +32,7 @@ if LOCAL_ENV_BOOL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'database.db',  # Or path to database file if using sqlite3.
+            'NAME': 'database2.db',  # Or path to database file if using sqlite3.
             # The following settings are not used with sqlite3:
             'USER': '',
             'PASSWORD': '',

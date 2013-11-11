@@ -1,0 +1,21 @@
+{% extends 'classroom/classroom_base.html' %}
+{% block title %}{{ classroom }} | Attendance{% endblock title %}
+
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/attendance">Attendance</a></li>
+    <li>{{ attendance.date.day }} {{ attendance.date|date:'M' }} {{ attendance.date.year }}</li>
+{% endblock %}
+
+{% block action_header %}
+{% endblock action_header %}
+
+{% block content %}
+    <h1>Attendance for {{ attendance.date.day }} {{ attendance.date|date:'M' }} {{ attendance.date.year }}</h1>
+    <p>Present children:</p>
+    <ul>
+    {% for child in attendance.attendance.all %}
+        <li>{{ child }}</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

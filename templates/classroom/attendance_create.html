@@ -1,0 +1,20 @@
+{% extends 'classroom/classroom_base.html' %}
+{% block title %}{{ classroom }} | Attendance Check{% endblock title %}
+
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/attendance">Attendance</a></li>
+    <li>Check</li>
+{% endblock %}
+
+{% block action_header %}
+{% endblock action_header %}
+
+{% block content %}
+    <h1>Attendance check</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="OK">
+    </form>
+{% endblock content %}

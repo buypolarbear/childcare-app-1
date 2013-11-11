@@ -1,0 +1,20 @@
+{% extends 'classroom/classroom_base.html' %}
+{% block title %}{{ classroom }} | Attendance{% endblock title %}
+
+{% block breadcrumb %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}">{{ classroom }}</a></li>
+    <li>Attendance</li>
+{% endblock %}
+
+{% block action %}
+    <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/attendance/check/"><span class="glyphicon glyphicon-plus"></span> Check attendance</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Attendance per day</h1>
+    <ul>
+    {% for attendance in attendance_list %}
+        <li><a href="/childcare/{{ childcare.pk }}/classroom/{{ classroom.pk }}/attendance/{{ attendance.pk }}">{{ attendance.date.day }} {{ attendance.date|date:'M' }} {{ attendance.date.year }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
